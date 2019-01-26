@@ -382,6 +382,18 @@ namespace _3DRaceTrackConverterFrontend
     
     ////////////////////////////////////////////////////////////////////////////
     
+    void Lock()
+    {
+      panel_all.Enabled = false;
+      lbl_processing.Visible = true;
+    }
+
+    void Unlock()
+    {
+      panel_all.Enabled = true;
+      lbl_processing.Visible = false;
+    }
+
     bool PathsContainSpaces()
     {
       return (trackPath.Contains(" ") || gradientPath.Contains(" "));
@@ -389,15 +401,19 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_go_Click(object sender, EventArgs e)
     {
+      Lock();
+
       if (AllFieldsFilled() == false)
       {
         MessageBox.Show("Not all fields valid.");
+        Unlock();
         return;
       }
 
       if (PathsContainSpaces() == true)
       {
         MessageBox.Show("Paths contain spaces, which are not allowed.");
+        Unlock();
         return;
       }
 
@@ -411,12 +427,13 @@ namespace _3DRaceTrackConverterFrontend
       if (result1 < 0)
       {
         MessageBox.Show("ABORTED - " + process.StartInfo.FileName);
+        Unlock();
         return;
       }
 
       if (checkBox1.Checked)
       {
-        Process.Start(""+ result1);
+        //Process.Start(""+ result1);
       }
 
       process.StartInfo.FileName = "TryMakeGradient.exe";
@@ -428,12 +445,13 @@ namespace _3DRaceTrackConverterFrontend
       if (result2 < 0)
       {
         MessageBox.Show("ABORTED - " + process.StartInfo.FileName);
+        Unlock();
         return;
       }
 
       if (checkBox1.Checked)
       {
-        Process.Start(""+ result2);
+        //Process.Start(""+ result2);
       }
 
       process.StartInfo.FileName = "TrackGradientShader.exe";
@@ -445,14 +463,17 @@ namespace _3DRaceTrackConverterFrontend
       if (result3 < 0)
       {
         MessageBox.Show("ABORTED - " + process.StartInfo.FileName);
+        Unlock();
         return;
       }
 
       if (checkBox1.Checked)
       {
+        Process.Start(Application.StartupPath);
         Process.Start("" + result3 + ".bmp");
       }
 
+      Unlock();
     }
 
   }

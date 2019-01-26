@@ -71,6 +71,8 @@
       this.tb_x = new System.Windows.Forms.TextBox();
       this.tb_y = new System.Windows.Forms.TextBox();
       this.lbl_y = new System.Windows.Forms.Label();
+      this.panel_all = new System.Windows.Forms.Panel();
+      this.lbl_processing = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.panel6.SuspendLayout();
@@ -84,6 +86,7 @@
       this.panel7.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox_gradient)).BeginInit();
       this.panel8.SuspendLayout();
+      this.panel_all.SuspendLayout();
       this.SuspendLayout();
       // 
       // panel1
@@ -93,7 +96,7 @@
       this.panel1.Controls.Add(this.groupBox1);
       this.panel1.Controls.Add(this.pictureBox_preview);
       this.panel1.Controls.Add(this.btn_browseImage);
-      this.panel1.Location = new System.Drawing.Point(725, 12);
+      this.panel1.Location = new System.Drawing.Point(720, 11);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(290, 513);
       this.panel1.TabIndex = 1000;
@@ -334,7 +337,7 @@
       // lbl_image
       // 
       this.lbl_image.AutoSize = true;
-      this.lbl_image.Location = new System.Drawing.Point(12, 528);
+      this.lbl_image.Location = new System.Drawing.Point(7, 527);
       this.lbl_image.Name = "lbl_image";
       this.lbl_image.Size = new System.Drawing.Size(71, 13);
       this.lbl_image.TabIndex = 2;
@@ -343,8 +346,9 @@
       // panel2
       // 
       this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.panel2.Controls.Add(this.lbl_processing);
       this.panel2.Controls.Add(this.pictureBox_main);
-      this.panel2.Location = new System.Drawing.Point(16, 12);
+      this.panel2.Location = new System.Drawing.Point(11, 11);
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(702, 513);
       this.panel2.TabIndex = 1000;
@@ -367,7 +371,7 @@
       this.panel7.Controls.Add(this.pictureBox_gradient);
       this.panel7.Cursor = System.Windows.Forms.Cursors.No;
       this.panel7.Enabled = false;
-      this.panel7.Location = new System.Drawing.Point(15, 560);
+      this.panel7.Location = new System.Drawing.Point(10, 559);
       this.panel7.Name = "panel7";
       this.panel7.Size = new System.Drawing.Size(702, 66);
       this.panel7.TabIndex = 1000;
@@ -385,7 +389,7 @@
       // 
       // btn_go
       // 
-      this.btn_go.Location = new System.Drawing.Point(727, 640);
+      this.btn_go.Location = new System.Drawing.Point(722, 639);
       this.btn_go.Name = "btn_go";
       this.btn_go.Size = new System.Drawing.Size(137, 36);
       this.btn_go.TabIndex = 12;
@@ -396,7 +400,7 @@
       // lbl_gradient
       // 
       this.lbl_gradient.AutoSize = true;
-      this.lbl_gradient.Location = new System.Drawing.Point(13, 629);
+      this.lbl_gradient.Location = new System.Drawing.Point(8, 628);
       this.lbl_gradient.Name = "lbl_gradient";
       this.lbl_gradient.Size = new System.Drawing.Size(71, 13);
       this.lbl_gradient.TabIndex = 2;
@@ -407,18 +411,18 @@
       this.checkBox1.AutoSize = true;
       this.checkBox1.Checked = true;
       this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox1.Location = new System.Drawing.Point(878, 657);
+      this.checkBox1.Location = new System.Drawing.Point(873, 656);
       this.checkBox1.Name = "checkBox1";
-      this.checkBox1.Size = new System.Drawing.Size(124, 17);
+      this.checkBox1.Size = new System.Drawing.Size(127, 17);
       this.checkBox1.TabIndex = 11;
-      this.checkBox1.Text = "Open Output Folders";
+      this.checkBox1.Text = "Open when complete";
       this.checkBox1.UseVisualStyleBackColor = true;
       // 
       // panel8
       // 
       this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.panel8.Controls.Add(this.btn_gradient);
-      this.panel8.Location = new System.Drawing.Point(725, 560);
+      this.panel8.Location = new System.Drawing.Point(720, 559);
       this.panel8.Name = "panel8";
       this.panel8.Size = new System.Drawing.Size(290, 66);
       this.panel8.TabIndex = 1000;
@@ -435,7 +439,7 @@
       // 
       // btn_load
       // 
-      this.btn_load.Location = new System.Drawing.Point(556, 640);
+      this.btn_load.Location = new System.Drawing.Point(551, 639);
       this.btn_load.Name = "btn_load";
       this.btn_load.Size = new System.Drawing.Size(137, 36);
       this.btn_load.TabIndex = 12;
@@ -445,7 +449,7 @@
       // 
       // btn_save
       // 
-      this.btn_save.Location = new System.Drawing.Point(413, 640);
+      this.btn_save.Location = new System.Drawing.Point(408, 639);
       this.btn_save.Name = "btn_save";
       this.btn_save.Size = new System.Drawing.Size(137, 36);
       this.btn_save.TabIndex = 12;
@@ -456,7 +460,7 @@
       // lbl_x
       // 
       this.lbl_x.AutoSize = true;
-      this.lbl_x.Location = new System.Drawing.Point(459, 534);
+      this.lbl_x.Location = new System.Drawing.Point(454, 533);
       this.lbl_x.Name = "lbl_x";
       this.lbl_x.Size = new System.Drawing.Size(14, 13);
       this.lbl_x.TabIndex = 2;
@@ -464,7 +468,7 @@
       // 
       // tb_x
       // 
-      this.tb_x.Location = new System.Drawing.Point(479, 531);
+      this.tb_x.Location = new System.Drawing.Point(474, 530);
       this.tb_x.Name = "tb_x";
       this.tb_x.ReadOnly = true;
       this.tb_x.Size = new System.Drawing.Size(100, 20);
@@ -472,7 +476,7 @@
       // 
       // tb_y
       // 
-      this.tb_y.Location = new System.Drawing.Point(613, 531);
+      this.tb_y.Location = new System.Drawing.Point(608, 530);
       this.tb_y.Name = "tb_y";
       this.tb_y.ReadOnly = true;
       this.tb_y.Size = new System.Drawing.Size(100, 20);
@@ -481,31 +485,54 @@
       // lbl_y
       // 
       this.lbl_y.AutoSize = true;
-      this.lbl_y.Location = new System.Drawing.Point(593, 534);
+      this.lbl_y.Location = new System.Drawing.Point(588, 533);
       this.lbl_y.Name = "lbl_y";
       this.lbl_y.Size = new System.Drawing.Size(14, 13);
       this.lbl_y.TabIndex = 1002;
       this.lbl_y.Text = "Y";
+      // 
+      // panel_all
+      // 
+      this.panel_all.Controls.Add(this.tb_y);
+      this.panel_all.Controls.Add(this.panel2);
+      this.panel_all.Controls.Add(this.lbl_y);
+      this.panel_all.Controls.Add(this.btn_save);
+      this.panel_all.Controls.Add(this.tb_x);
+      this.panel_all.Controls.Add(this.panel1);
+      this.panel_all.Controls.Add(this.panel8);
+      this.panel_all.Controls.Add(this.btn_go);
+      this.panel_all.Controls.Add(this.checkBox1);
+      this.panel_all.Controls.Add(this.btn_load);
+      this.panel_all.Controls.Add(this.panel7);
+      this.panel_all.Controls.Add(this.lbl_image);
+      this.panel_all.Controls.Add(this.lbl_x);
+      this.panel_all.Controls.Add(this.lbl_gradient);
+      this.panel_all.Location = new System.Drawing.Point(1, 1);
+      this.panel_all.Name = "panel_all";
+      this.panel_all.Size = new System.Drawing.Size(1025, 675);
+      this.panel_all.TabIndex = 1;
+      // 
+      // lbl_processing
+      // 
+      this.lbl_processing.AutoSize = true;
+      this.lbl_processing.BackColor = System.Drawing.Color.AliceBlue;
+      this.lbl_processing.Enabled = false;
+      this.lbl_processing.Font = new System.Drawing.Font("MS Reference Sans Serif", 80.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbl_processing.ForeColor = System.Drawing.Color.DimGray;
+      this.lbl_processing.Location = new System.Drawing.Point(32, 58);
+      this.lbl_processing.Name = "lbl_processing";
+      this.lbl_processing.Size = new System.Drawing.Size(628, 393);
+      this.lbl_processing.TabIndex = 1;
+      this.lbl_processing.Text = "\r\nProcessing\r\n\r\n";
+      this.lbl_processing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.lbl_processing.Visible = false;
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1027, 686);
-      this.Controls.Add(this.tb_y);
-      this.Controls.Add(this.lbl_y);
-      this.Controls.Add(this.tb_x);
-      this.Controls.Add(this.panel8);
-      this.Controls.Add(this.checkBox1);
-      this.Controls.Add(this.panel7);
-      this.Controls.Add(this.panel2);
-      this.Controls.Add(this.lbl_gradient);
-      this.Controls.Add(this.lbl_x);
-      this.Controls.Add(this.lbl_image);
-      this.Controls.Add(this.btn_load);
-      this.Controls.Add(this.btn_go);
-      this.Controls.Add(this.panel1);
-      this.Controls.Add(this.btn_save);
+      this.Controls.Add(this.panel_all);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Form1";
       this.Text = "AL\'s 3D Track Tool";
@@ -528,8 +555,9 @@
       this.panel7.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox_gradient)).EndInit();
       this.panel8.ResumeLayout(false);
+      this.panel_all.ResumeLayout(false);
+      this.panel_all.PerformLayout();
       this.ResumeLayout(false);
-      this.PerformLayout();
 
     }
 
@@ -576,6 +604,8 @@
     private System.Windows.Forms.TextBox tb_x;
     private System.Windows.Forms.TextBox tb_y;
     private System.Windows.Forms.Label lbl_y;
+    private System.Windows.Forms.Panel panel_all;
+    private System.Windows.Forms.Label lbl_processing;
   }
 }
 
