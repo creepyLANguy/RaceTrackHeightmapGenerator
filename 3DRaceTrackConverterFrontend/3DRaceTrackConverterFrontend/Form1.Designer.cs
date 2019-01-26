@@ -32,22 +32,26 @@
       this.panel1 = new System.Windows.Forms.Panel();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.panel6 = new System.Windows.Forms.Panel();
+      this.btn_m2p2 = new System.Windows.Forms.Button();
       this.m2x2 = new System.Windows.Forms.TextBox();
       this.label11 = new System.Windows.Forms.Label();
       this.label12 = new System.Windows.Forms.Label();
       this.m2y2 = new System.Windows.Forms.TextBox();
       this.panel10 = new System.Windows.Forms.Panel();
+      this.btn_m2p1 = new System.Windows.Forms.Button();
       this.m2x1 = new System.Windows.Forms.TextBox();
       this.label13 = new System.Windows.Forms.Label();
       this.label14 = new System.Windows.Forms.Label();
       this.m2y1 = new System.Windows.Forms.TextBox();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.panel4 = new System.Windows.Forms.Panel();
+      this.btn_m1p2 = new System.Windows.Forms.Button();
       this.m1x2 = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.m1y2 = new System.Windows.Forms.TextBox();
       this.panel3 = new System.Windows.Forms.Panel();
+      this.btn_m1p1 = new System.Windows.Forms.Button();
       this.m1x1 = new System.Windows.Forms.TextBox();
       this.label2 = new System.Windows.Forms.Label();
       this.label1 = new System.Windows.Forms.Label();
@@ -58,6 +62,7 @@
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.panel2 = new System.Windows.Forms.Panel();
       this.pictureBox_main = new System.Windows.Forms.PictureBox();
+      this.lbl_processing2 = new System.Windows.Forms.Button();
       this.panel7 = new System.Windows.Forms.Panel();
       this.pictureBox_gradient = new System.Windows.Forms.PictureBox();
       this.btn_go = new System.Windows.Forms.Button();
@@ -72,12 +77,7 @@
       this.tb_y = new System.Windows.Forms.TextBox();
       this.lbl_y = new System.Windows.Forms.Label();
       this.panel_all = new System.Windows.Forms.Panel();
-      this.btn_m1p1 = new System.Windows.Forms.Button();
-      this.btn_m1p2 = new System.Windows.Forms.Button();
-      this.btn_m2p1 = new System.Windows.Forms.Button();
-      this.btn_m2p2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
-      this.lbl_processing = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.panel6.SuspendLayout();
@@ -96,18 +96,21 @@
       // 
       // panel1
       // 
+      this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.panel1.Controls.Add(this.groupBox2);
       this.panel1.Controls.Add(this.groupBox1);
       this.panel1.Controls.Add(this.pictureBox_preview);
       this.panel1.Controls.Add(this.btn_browseImage);
-      this.panel1.Location = new System.Drawing.Point(720, 11);
+      this.panel1.Location = new System.Drawing.Point(722, 11);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(290, 513);
+      this.panel1.Size = new System.Drawing.Size(290, 524);
       this.panel1.TabIndex = 1000;
       // 
       // groupBox2
       // 
+      this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.groupBox2.Controls.Add(this.panel6);
       this.groupBox2.Controls.Add(this.panel10);
       this.groupBox2.Location = new System.Drawing.Point(22, 406);
@@ -129,6 +132,17 @@
       this.panel6.Name = "panel6";
       this.panel6.Size = new System.Drawing.Size(229, 29);
       this.panel6.TabIndex = 5;
+      // 
+      // btn_m2p2
+      // 
+      this.btn_m2p2.BackColor = System.Drawing.SystemColors.Control;
+      this.btn_m2p2.Location = new System.Drawing.Point(202, 4);
+      this.btn_m2p2.Name = "btn_m2p2";
+      this.btn_m2p2.Size = new System.Drawing.Size(20, 20);
+      this.btn_m2p2.TabIndex = 4;
+      this.btn_m2p2.Text = "<";
+      this.btn_m2p2.UseVisualStyleBackColor = false;
+      this.btn_m2p2.Click += new System.EventHandler(this.btn_m2p2_Click);
       // 
       // m2x2
       // 
@@ -179,6 +193,17 @@
       this.panel10.Size = new System.Drawing.Size(229, 29);
       this.panel10.TabIndex = 0;
       // 
+      // btn_m2p1
+      // 
+      this.btn_m2p1.BackColor = System.Drawing.SystemColors.Control;
+      this.btn_m2p1.Location = new System.Drawing.Point(202, 4);
+      this.btn_m2p1.Name = "btn_m2p1";
+      this.btn_m2p1.Size = new System.Drawing.Size(20, 20);
+      this.btn_m2p1.TabIndex = 4;
+      this.btn_m2p1.Text = "<";
+      this.btn_m2p1.UseVisualStyleBackColor = false;
+      this.btn_m2p1.Click += new System.EventHandler(this.btn_m2p1_Click);
+      // 
       // m2x1
       // 
       this.m2x1.Location = new System.Drawing.Point(27, 3);
@@ -217,6 +242,7 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.groupBox1.Controls.Add(this.panel4);
       this.groupBox1.Controls.Add(this.panel3);
       this.groupBox1.Location = new System.Drawing.Point(22, 307);
@@ -238,6 +264,17 @@
       this.panel4.Name = "panel4";
       this.panel4.Size = new System.Drawing.Size(229, 29);
       this.panel4.TabIndex = 5;
+      // 
+      // btn_m1p2
+      // 
+      this.btn_m1p2.BackColor = System.Drawing.SystemColors.Control;
+      this.btn_m1p2.Location = new System.Drawing.Point(202, 3);
+      this.btn_m1p2.Name = "btn_m1p2";
+      this.btn_m1p2.Size = new System.Drawing.Size(20, 20);
+      this.btn_m1p2.TabIndex = 4;
+      this.btn_m1p2.Text = "<";
+      this.btn_m1p2.UseVisualStyleBackColor = false;
+      this.btn_m1p2.Click += new System.EventHandler(this.btn_m1p2_Click);
       // 
       // m1x2
       // 
@@ -288,6 +325,17 @@
       this.panel3.Size = new System.Drawing.Size(229, 29);
       this.panel3.TabIndex = 0;
       // 
+      // btn_m1p1
+      // 
+      this.btn_m1p1.BackColor = System.Drawing.SystemColors.Control;
+      this.btn_m1p1.Location = new System.Drawing.Point(202, 3);
+      this.btn_m1p1.Name = "btn_m1p1";
+      this.btn_m1p1.Size = new System.Drawing.Size(20, 20);
+      this.btn_m1p1.TabIndex = 4;
+      this.btn_m1p1.Text = "<";
+      this.btn_m1p1.UseVisualStyleBackColor = false;
+      this.btn_m1p1.Click += new System.EventHandler(this.btn_m1p1_Click);
+      // 
       // m1x1
       // 
       this.m1x1.Location = new System.Drawing.Point(27, 3);
@@ -326,6 +374,9 @@
       // 
       // pictureBox_preview
       // 
+      this.pictureBox_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.pictureBox_preview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_preview.BackgroundImage")));
       this.pictureBox_preview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.pictureBox_preview.Cursor = System.Windows.Forms.Cursors.Cross;
@@ -353,8 +404,9 @@
       // 
       // lbl_image
       // 
+      this.lbl_image.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.lbl_image.AutoSize = true;
-      this.lbl_image.Location = new System.Drawing.Point(7, 527);
+      this.lbl_image.Location = new System.Drawing.Point(12, 527);
       this.lbl_image.Name = "lbl_image";
       this.lbl_image.Size = new System.Drawing.Size(71, 13);
       this.lbl_image.TabIndex = 2;
@@ -362,8 +414,11 @@
       // 
       // panel2
       // 
+      this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.panel2.Controls.Add(this.lbl_processing);
+      this.panel2.Controls.Add(this.lbl_processing2);
       this.panel2.Controls.Add(this.pictureBox_main);
       this.panel2.Location = new System.Drawing.Point(11, 11);
       this.panel2.Name = "panel2";
@@ -372,8 +427,8 @@
       // 
       // pictureBox_main
       // 
+      this.pictureBox_main.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_main.BackgroundImage")));
       this.pictureBox_main.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.pictureBox_main.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_main.Image")));
       this.pictureBox_main.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_main.InitialImage")));
       this.pictureBox_main.Location = new System.Drawing.Point(100, 3);
       this.pictureBox_main.Name = "pictureBox_main";
@@ -384,8 +439,27 @@
       this.pictureBox_main.WaitOnLoad = true;
       this.pictureBox_main.Click += new System.EventHandler(this.pictureBox_main_Click);
       // 
+      // lbl_processing2
+      // 
+      this.lbl_processing2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbl_processing2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+      this.lbl_processing2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.lbl_processing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbl_processing2.ForeColor = System.Drawing.Color.Thistle;
+      this.lbl_processing2.Location = new System.Drawing.Point(-2, -1);
+      this.lbl_processing2.Name = "lbl_processing2";
+      this.lbl_processing2.Size = new System.Drawing.Size(703, 513);
+      this.lbl_processing2.TabIndex = 2;
+      this.lbl_processing2.Text = "Processing...";
+      this.lbl_processing2.UseVisualStyleBackColor = true;
+      this.lbl_processing2.Visible = false;
+      // 
       // panel7
       // 
+      this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.panel7.Controls.Add(this.pictureBox_gradient);
       this.panel7.Cursor = System.Windows.Forms.Cursors.No;
@@ -397,10 +471,11 @@
       // 
       // pictureBox_gradient
       // 
+      this.pictureBox_gradient.Dock = System.Windows.Forms.DockStyle.Fill;
       this.pictureBox_gradient.Enabled = false;
-      this.pictureBox_gradient.Location = new System.Drawing.Point(1, 3);
+      this.pictureBox_gradient.Location = new System.Drawing.Point(0, 0);
       this.pictureBox_gradient.Name = "pictureBox_gradient";
-      this.pictureBox_gradient.Size = new System.Drawing.Size(696, 58);
+      this.pictureBox_gradient.Size = new System.Drawing.Size(700, 64);
       this.pictureBox_gradient.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.pictureBox_gradient.TabIndex = 0;
       this.pictureBox_gradient.TabStop = false;
@@ -408,6 +483,7 @@
       // 
       // btn_go
       // 
+      this.btn_go.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.btn_go.Location = new System.Drawing.Point(722, 639);
       this.btn_go.Name = "btn_go";
       this.btn_go.Size = new System.Drawing.Size(137, 36);
@@ -418,8 +494,9 @@
       // 
       // lbl_gradient
       // 
+      this.lbl_gradient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.lbl_gradient.AutoSize = true;
-      this.lbl_gradient.Location = new System.Drawing.Point(8, 628);
+      this.lbl_gradient.Location = new System.Drawing.Point(12, 628);
       this.lbl_gradient.Name = "lbl_gradient";
       this.lbl_gradient.Size = new System.Drawing.Size(71, 13);
       this.lbl_gradient.TabIndex = 2;
@@ -427,6 +504,7 @@
       // 
       // checkBox1
       // 
+      this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.checkBox1.AutoSize = true;
       this.checkBox1.Checked = true;
       this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -439,6 +517,7 @@
       // 
       // panel8
       // 
+      this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.panel8.Controls.Add(this.btn_gradient);
       this.panel8.Location = new System.Drawing.Point(720, 559);
@@ -458,6 +537,7 @@
       // 
       // btn_load
       // 
+      this.btn_load.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.btn_load.Location = new System.Drawing.Point(551, 639);
       this.btn_load.Name = "btn_load";
       this.btn_load.Size = new System.Drawing.Size(137, 36);
@@ -468,6 +548,7 @@
       // 
       // btn_save
       // 
+      this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.btn_save.Location = new System.Drawing.Point(408, 639);
       this.btn_save.Name = "btn_save";
       this.btn_save.Size = new System.Drawing.Size(137, 36);
@@ -478,6 +559,7 @@
       // 
       // lbl_x
       // 
+      this.lbl_x.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lbl_x.AutoSize = true;
       this.lbl_x.Location = new System.Drawing.Point(434, 533);
       this.lbl_x.Name = "lbl_x";
@@ -487,6 +569,7 @@
       // 
       // tb_x
       // 
+      this.tb_x.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.tb_x.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.tb_x.Location = new System.Drawing.Point(454, 530);
       this.tb_x.Name = "tb_x";
@@ -496,6 +579,7 @@
       // 
       // tb_y
       // 
+      this.tb_y.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.tb_y.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.tb_y.Location = new System.Drawing.Point(588, 530);
       this.tb_y.Name = "tb_y";
@@ -505,6 +589,7 @@
       // 
       // lbl_y
       // 
+      this.lbl_y.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lbl_y.AutoSize = true;
       this.lbl_y.Location = new System.Drawing.Point(568, 533);
       this.lbl_y.Name = "lbl_y";
@@ -514,12 +599,12 @@
       // 
       // panel_all
       // 
+      this.panel_all.Controls.Add(this.lbl_x);
+      this.panel_all.Controls.Add(this.tb_x);
       this.panel_all.Controls.Add(this.button1);
       this.panel_all.Controls.Add(this.tb_y);
-      this.panel_all.Controls.Add(this.panel2);
       this.panel_all.Controls.Add(this.lbl_y);
       this.panel_all.Controls.Add(this.btn_save);
-      this.panel_all.Controls.Add(this.tb_x);
       this.panel_all.Controls.Add(this.panel1);
       this.panel_all.Controls.Add(this.panel8);
       this.panel_all.Controls.Add(this.btn_go);
@@ -527,59 +612,17 @@
       this.panel_all.Controls.Add(this.btn_load);
       this.panel_all.Controls.Add(this.panel7);
       this.panel_all.Controls.Add(this.lbl_image);
-      this.panel_all.Controls.Add(this.lbl_x);
       this.panel_all.Controls.Add(this.lbl_gradient);
-      this.panel_all.Location = new System.Drawing.Point(1, 1);
+      this.panel_all.Controls.Add(this.panel2);
+      this.panel_all.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.panel_all.Location = new System.Drawing.Point(0, 0);
       this.panel_all.Name = "panel_all";
-      this.panel_all.Size = new System.Drawing.Size(1025, 675);
+      this.panel_all.Size = new System.Drawing.Size(1027, 686);
       this.panel_all.TabIndex = 1;
-      // 
-      // btn_m1p1
-      // 
-      this.btn_m1p1.BackColor = System.Drawing.SystemColors.Control;
-      this.btn_m1p1.Location = new System.Drawing.Point(202, 3);
-      this.btn_m1p1.Name = "btn_m1p1";
-      this.btn_m1p1.Size = new System.Drawing.Size(20, 20);
-      this.btn_m1p1.TabIndex = 4;
-      this.btn_m1p1.Text = "<";
-      this.btn_m1p1.UseVisualStyleBackColor = false;
-      this.btn_m1p1.Click += new System.EventHandler(this.btn_m1p1_Click);
-      // 
-      // btn_m1p2
-      // 
-      this.btn_m1p2.BackColor = System.Drawing.SystemColors.Control;
-      this.btn_m1p2.Location = new System.Drawing.Point(202, 3);
-      this.btn_m1p2.Name = "btn_m1p2";
-      this.btn_m1p2.Size = new System.Drawing.Size(20, 20);
-      this.btn_m1p2.TabIndex = 4;
-      this.btn_m1p2.Text = "<";
-      this.btn_m1p2.UseVisualStyleBackColor = false;
-      this.btn_m1p2.Click += new System.EventHandler(this.btn_m1p2_Click);
-      // 
-      // btn_m2p1
-      // 
-      this.btn_m2p1.BackColor = System.Drawing.SystemColors.Control;
-      this.btn_m2p1.Location = new System.Drawing.Point(202, 4);
-      this.btn_m2p1.Name = "btn_m2p1";
-      this.btn_m2p1.Size = new System.Drawing.Size(20, 20);
-      this.btn_m2p1.TabIndex = 4;
-      this.btn_m2p1.Text = "<";
-      this.btn_m2p1.UseVisualStyleBackColor = false;
-      this.btn_m2p1.Click += new System.EventHandler(this.btn_m2p1_Click);
-      // 
-      // btn_m2p2
-      // 
-      this.btn_m2p2.BackColor = System.Drawing.SystemColors.Control;
-      this.btn_m2p2.Location = new System.Drawing.Point(202, 4);
-      this.btn_m2p2.Name = "btn_m2p2";
-      this.btn_m2p2.Size = new System.Drawing.Size(20, 20);
-      this.btn_m2p2.TabIndex = 4;
-      this.btn_m2p2.Text = "<";
-      this.btn_m2p2.UseVisualStyleBackColor = false;
-      this.btn_m2p2.Click += new System.EventHandler(this.btn_m2p2_Click);
       // 
       // button1
       // 
+      this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.button1.BackColor = System.Drawing.SystemColors.Control;
       this.button1.Enabled = false;
       this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -592,21 +635,6 @@
       this.button1.Text = "<";
       this.button1.UseVisualStyleBackColor = false;
       // 
-      // lbl_processing
-      // 
-      this.lbl_processing.AutoSize = true;
-      this.lbl_processing.BackColor = System.Drawing.Color.AliceBlue;
-      this.lbl_processing.Enabled = false;
-      this.lbl_processing.Font = new System.Drawing.Font("MS Reference Sans Serif", 80.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lbl_processing.ForeColor = System.Drawing.Color.DimGray;
-      this.lbl_processing.Location = new System.Drawing.Point(35, 58);
-      this.lbl_processing.Name = "lbl_processing";
-      this.lbl_processing.Size = new System.Drawing.Size(628, 393);
-      this.lbl_processing.TabIndex = 1;
-      this.lbl_processing.Text = "\r\nProcessing\r\n\r\n";
-      this.lbl_processing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.lbl_processing.Visible = false;
-      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -617,6 +645,8 @@
       this.Name = "Form1";
       this.Text = "AL\'s 3D Track Tool";
       this.Load += new System.EventHandler(this.Form1_Load);
+      this.ResizeBegin += new System.EventHandler(this.Form1_ResizeBegin);
+      this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
       this.panel1.ResumeLayout(false);
       this.groupBox2.ResumeLayout(false);
       this.panel6.ResumeLayout(false);
@@ -690,7 +720,7 @@
     private System.Windows.Forms.Button btn_m1p2;
     private System.Windows.Forms.Button btn_m1p1;
     private System.Windows.Forms.Button button1;
-    private System.Windows.Forms.Label lbl_processing;
+    private System.Windows.Forms.Button lbl_processing2;
   }
 }
 

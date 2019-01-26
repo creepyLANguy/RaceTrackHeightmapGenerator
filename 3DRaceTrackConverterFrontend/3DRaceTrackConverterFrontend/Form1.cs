@@ -38,7 +38,7 @@ namespace _3DRaceTrackConverterFrontend
 
     private void Form1_Load(object sender, EventArgs e)
     {
-      this.FormBorderStyle = FormBorderStyle.FixedSingle;
+      //this.FormBorderStyle = FormBorderStyle.FixedSingle;
       this.MaximizeBox = false;
       btn_browseImage.Focus();
       lbl_image.Text = lbl_gradient.Text = "";
@@ -385,13 +385,13 @@ namespace _3DRaceTrackConverterFrontend
     void Lock()
     {
       panel_all.Enabled = false;
-      lbl_processing.Visible = true;
+      lbl_processing2.Visible = true;
     }
 
     void Unlock()
     {
       panel_all.Enabled = true;
-      lbl_processing.Visible = false;
+      lbl_processing2.Visible = false;
     }
 
     bool PathsContainSpaces()
@@ -542,6 +542,16 @@ namespace _3DRaceTrackConverterFrontend
       m2y2.Text = tb_y.Text;
       coordinate_Leave_x(m2x2, null);
       coordinate_Leave_y(m2y2, null);
+    }
+
+    private void Form1_ResizeBegin(object sender, EventArgs e)
+    {
+      //SuspendLayout();
+    }
+
+    private void Form1_ResizeEnd(object sender, EventArgs e)
+    {
+      //ResumeLayout(true);
     }
   }
 }
