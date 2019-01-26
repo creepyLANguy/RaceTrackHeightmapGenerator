@@ -28,6 +28,9 @@ namespace _3DRaceTrackConverterFrontend
 
     int[] reds = new int[8];
 
+    int offset_x = 0;
+    int offset_y = 0;
+
     public Form1()
     {
       InitializeComponent();
@@ -39,6 +42,9 @@ namespace _3DRaceTrackConverterFrontend
       this.MaximizeBox = false;
       btn_browseImage.Focus();
       lbl_image.Text = lbl_gradient.Text = "";
+
+      offset_x = (int)(0.5 * panel2.Width);
+      offset_y = (int)(0.5 * panel2.Height);
     }
 
     void PopulatePictureBoxes()
@@ -51,6 +57,7 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_browseImage_Click(object sender, EventArgs e)
     {
+      openFileDialog1.Filter = "";
       DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
       if (result != DialogResult.OK) // Test result.
       {
@@ -80,7 +87,7 @@ namespace _3DRaceTrackConverterFrontend
       int pos_x = -1 * (int)(pictureBox_main.Image.Width * ((double)cursorPos.X / pictureBox_preview.Width));
       int pos_y = -1 * (int)(pictureBox_main.Image.Height * ((double)cursorPos.Y / pictureBox_preview.Height));
 
-      pictureBox_main.Location = new Point(pos_x, pos_y);
+      pictureBox_main.Location = new Point(pos_x + offset_x, pos_y + offset_y);
     }
 
     private void pictureBox_preview_MouseDown(object sender, MouseEventArgs e)
@@ -106,6 +113,8 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_gradient_Click(object sender, EventArgs e)
     {
+      openFileDialog1.Filter = "";
+
       DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
       if (result != DialogResult.OK) // Test result.
       {
@@ -124,71 +133,6 @@ namespace _3DRaceTrackConverterFrontend
       }
     }
 
-    string GetArgsString()
-    {
-      string s = "";
-
-      s += trackPath + delim;
-
-      s += m1x1.Text + delim;
-      s += m1y1.Text + delim;
-      s += m1x2.Text + delim;
-      s += m1y2.Text + delim;
-
-      s += m2x1.Text + delim;
-      s += m2y1.Text + delim;
-      s += m2x2.Text + delim;
-      s += m2y2.Text + delim;
-
-      return s;
-    }
-
-    bool AllFieldsFilled()
-    {
-      return 
-        !(
-          trackPath.Length == 0 ||
-          gradientPath.Length == 0 ||
-
-          m1x1.Text.Length == 0 ||
-          m1y1.Text.Length == 0 ||
-          m1x2.Text.Length == 0 ||
-          m1y2.Text.Length == 0 ||
-
-          m2x1.Text.Length == 0 ||
-          m2y1.Text.Length == 0 ||
-          m2x2.Text.Length == 0 ||
-          m2y2.Text.Length == 0 
-        );
-    }
-
-    bool PathsContainSpaces()
-    {
-      return (trackPath.Contains(" ") || gradientPath.Contains(" "));
-    }
-
-    private void btn_go_Click(object sender, EventArgs e)
-    {
-      if (AllFieldsFilled() == false)
-      {
-        MessageBox.Show("Not all fields valid.");
-        return;
-      }
-
-      if (PathsContainSpaces() == true)
-      {
-        MessageBox.Show("Paths contain spaces, which are not allowed.");
-        return;
-      }
-
-      Process process = new Process();
-      process.StartInfo.FileName = "TrackEdgeDetector.exe";
-      process.StartInfo.Arguments = GetArgsString(); ;
-      process.Start();
-      process.WaitForExit();
-      int result = process.ExitCode;
-    }
-
     void SetReds()
     {
       int r = -1;
@@ -205,9 +149,23 @@ namespace _3DRaceTrackConverterFrontend
       int.TryParse(m2x2.Text, NumberStyles.Integer, null, out reds[++r]);
       int.TryParse(m2y2.Text, NumberStyles.Integer, null, out reds[++r]);
 
+      bool warnings = false;
+
       for (int i = 0; i < reds.Length; ++i)
       {
-        (pictureBox_main.Image as Bitmap).SetPixel(reds[i], reds[++i], Color.Red);
+        try
+        {
+          (pictureBox_main.Image as Bitmap).SetPixel(reds[i], reds[++i], Color.Red);
+        }
+        catch (Exception)
+        {
+          warnings = true;
+        }
+      }
+
+      if (warnings)
+      {
+        MessageBox.Show("Masks may be invalid.\nPlease revise for current track.");
       }
     }
 
@@ -217,10 +175,16 @@ namespace _3DRaceTrackConverterFrontend
       {
         return;
       }
-
+      
       for (int i = 0; i < reds.Length; ++i)
       {
-        (pictureBox_main.Image as Bitmap).SetPixel(reds[i], reds[++i], Color.Gray);
+        try
+        {
+          (pictureBox_main.Image as Bitmap).SetPixel(reds[i], reds[++i], Color.Gray);
+        }
+        catch (Exception)
+        {
+        }
       }
     }
 
@@ -275,6 +239,8 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_load_Click(object sender, EventArgs e)
     {
+      openFileDialog1.Filter = "Text files (*.txt)|*.txt";
+
       DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
       if (result != DialogResult.OK) // Test result.
       {
@@ -328,10 +294,18 @@ namespace _3DRaceTrackConverterFrontend
       m2y2.Text = config[i++];
 
       DrawMasks();
+
+      int x;
+      int.TryParse(m1x1.Text, NumberStyles.Integer, null, out x);
+      int y;
+      int.TryParse(m1y1.Text, NumberStyles.Integer, null, out y);
+      pictureBox_main.Location = new Point(-1*x + offset_x, -1*y + offset_y);
     }
 
     private void btn_save_Click(object sender, EventArgs e)
     {
+      openFileDialog1.Filter = "Text files (*.txt)|*.txt";
+
       SaveFileDialog save = new SaveFileDialog();
 
       save.FileName = "config.txt";
@@ -348,7 +322,95 @@ namespace _3DRaceTrackConverterFrontend
         }
         writer.Dispose();
         writer.Close();
+
+        Process.Start(save.FileName);
       }
     }
+
+    private void pictureBox_main_Click(object sender, EventArgs e)
+    {
+      tb_x.Text = "" + ((MouseEventArgs)e).X;
+      tb_y.Text = "" + ((MouseEventArgs)e).Y;
+    }
+
+
+    string GetArgsString()
+    {
+      string s = "";
+
+      s += trackPath + delim;
+
+      s += m1x1.Text + delim;
+      s += m1y1.Text + delim;
+      s += m1x2.Text + delim;
+      s += m1y2.Text + delim;
+
+      s += m2x1.Text + delim;
+      s += m2y1.Text + delim;
+      s += m2x2.Text + delim;
+      s += m2y2.Text + delim;
+
+      return s;
+    }
+
+    bool AllFieldsFilled()
+    {
+      return
+        !(
+          trackPath.Length == 0 ||
+          gradientPath.Length == 0 ||
+
+          m1x1.Text.Length == 0 ||
+          m1y1.Text.Length == 0 ||
+          m1x2.Text.Length == 0 ||
+          m1y2.Text.Length == 0 ||
+
+          m2x1.Text.Length == 0 ||
+          m2y1.Text.Length == 0 ||
+          m2x2.Text.Length == 0 ||
+          m2y2.Text.Length == 0
+        );
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////
+    
+    bool PathsContainSpaces()
+    {
+      return (trackPath.Contains(" ") || gradientPath.Contains(" "));
+    }
+
+    private void btn_go_Click(object sender, EventArgs e)
+    {
+      if (AllFieldsFilled() == false)
+      {
+        MessageBox.Show("Not all fields valid.");
+        return;
+      }
+
+      if (PathsContainSpaces() == true)
+      {
+        MessageBox.Show("Paths contain spaces, which are not allowed.");
+        return;
+      }
+
+      Process process = new Process();
+      process.StartInfo.FileName = "TrackEdgeDetector.exe";
+      process.StartInfo.Arguments = GetArgsString(); ;
+      process.Start();
+      process.WaitForExit();
+      int result = process.ExitCode;
+
+      if (result < 0)
+      {
+        MessageBox.Show("ABORTED");
+        return;
+      }
+
+      if (checkBox1.Checked)
+      {
+        Process.Start(""+ result);
+      }
+    }
+
   }
 }
