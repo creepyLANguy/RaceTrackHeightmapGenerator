@@ -57,7 +57,8 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_browseImage_Click(object sender, EventArgs e)
     {
-      openFileDialog1.Filter = "";
+      openFileDialog1.Filter = "Bitmap files (*.bmp)|*.bmp";
+
       DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
       if (result != DialogResult.OK) // Test result.
       {
@@ -113,7 +114,7 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_gradient_Click(object sender, EventArgs e)
     {
-      openFileDialog1.Filter = "";
+      openFileDialog1.Filter = "Bitmap files (*.bmp)|*.bmp";
 
       DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
       if (result != DialogResult.OK) // Test result.
@@ -239,7 +240,7 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_load_Click(object sender, EventArgs e)
     {
-      openFileDialog1.Filter = "Text files (*.txt)|*.txt";
+      openFileDialog1.Filter = "Track Data files (*.trk)|*.trk";
 
       DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
       if (result != DialogResult.OK) // Test result.
@@ -304,26 +305,33 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_save_Click(object sender, EventArgs e)
     {
-      openFileDialog1.Filter = "Text files (*.txt)|*.txt";
+      openFileDialog1.Filter = "Track Data files (*.trk)|*.trk";
 
       SaveFileDialog save = new SaveFileDialog();
 
-      save.FileName = "config.txt";
+      save.FileName = "config.trk";
 
-      save.Filter = "Text File | *.txt";
+      save.Filter = "Track Data file | *.trk";
 
       if (save.ShowDialog() == DialogResult.OK)
       {
         StreamWriter writer = new StreamWriter(save.OpenFile());
 
-        for (int i = 0; i < config.Count; i++)
-        {
-          writer.WriteLine(config[i].ToString());
-        }
+        writer.WriteLine(trackPath);
+        writer.WriteLine(gradientPath);
+        writer.WriteLine(m1x1.Text);
+        writer.WriteLine(m1y1.Text);
+        writer.WriteLine(m1x2.Text);
+        writer.WriteLine(m1y2.Text);
+        writer.WriteLine(m2x1.Text);
+        writer.WriteLine(m2y1.Text);
+        writer.WriteLine(m2x2.Text);
+        writer.WriteLine(m2y2.Text);
+
         writer.Dispose();
         writer.Close();
 
-        Process.Start(save.FileName);
+        Process.Start("notepad.exe", save.FileName);
       }
     }
 
@@ -395,21 +403,56 @@ namespace _3DRaceTrackConverterFrontend
 
       Process process = new Process();
       process.StartInfo.FileName = "TrackEdgeDetector.exe";
-      process.StartInfo.Arguments = GetArgsString(); ;
+      process.StartInfo.Arguments = GetArgsString();
       process.Start();
       process.WaitForExit();
-      int result = process.ExitCode;
+      int result1 = process.ExitCode;
 
-      if (result < 0)
+      if (result1 < 0)
       {
-        MessageBox.Show("ABORTED");
+        MessageBox.Show("ABORTED - " + process.StartInfo.FileName);
         return;
       }
 
       if (checkBox1.Checked)
       {
-        Process.Start(""+ result);
+        Process.Start(""+ result1);
       }
+
+      process.StartInfo.FileName = "TryMakeGradient.exe";
+      process.StartInfo.Arguments = gradientPath;
+      process.Start();
+      process.WaitForExit();
+      int result2 = process.ExitCode;
+
+      if (result2 < 0)
+      {
+        MessageBox.Show("ABORTED - " + process.StartInfo.FileName);
+        return;
+      }
+
+      if (checkBox1.Checked)
+      {
+        Process.Start(""+ result2);
+      }
+
+      process.StartInfo.FileName = "TrackGradientShader.exe";
+      process.StartInfo.Arguments = result1 + delim + result2;
+      process.Start();
+      process.WaitForExit();
+      int result3 = process.ExitCode;
+
+      if (result3 < 0)
+      {
+        MessageBox.Show("ABORTED - " + process.StartInfo.FileName);
+        return;
+      }
+
+      if (checkBox1.Checked)
+      {
+        Process.Start("" + result3 + ".bmp");
+      }
+
     }
 
   }
