@@ -1,8 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+
+//TODO
+//AL.
+//SET THE PIXELS WHEN CHANGING IN TEXTBOXES AND UPDATE VIEWS
+//MAKE VIEWS MORE STABLE
 
 namespace _3DRaceTrackConverterFrontend
 {
@@ -11,9 +19,12 @@ namespace _3DRaceTrackConverterFrontend
     string trackPath = "";
     string gradientPath = "";
 
-    string delim = ",";
+    string delim = " ";
+    const string newline = "\r\n";
 
     bool isMouseDown_preview = false;
+
+    List<string> config = new List<string>();
 
     public Form1()
     {
@@ -25,18 +36,18 @@ namespace _3DRaceTrackConverterFrontend
       this.FormBorderStyle = FormBorderStyle.FixedSingle;
       this.MaximizeBox = false;
       btn_browseImage.Focus();
+      lbl_image.Text = lbl_gradient.Text = "";
     }
 
     private void btn_browseImage_Click(object sender, EventArgs e)
     {
-      pictureBox_preview.Enabled = false;
-
       DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
       if (result != DialogResult.OK) // Test result.
       {
         return;
       }
 
+      pictureBox_preview.Enabled = false;
       trackPath = openFileDialog1.FileName;
       try
       {
@@ -47,7 +58,7 @@ namespace _3DRaceTrackConverterFrontend
       }
       catch (Exception)
       {
-        MessageBox.Show("Error opening file.");
+        MessageBox.Show("Error opening image file.");
       }
     }
 
@@ -112,15 +123,11 @@ namespace _3DRaceTrackConverterFrontend
       s += m1y1.Text + delim;
       s += m1x2.Text + delim;
       s += m1y2.Text + delim;
-      s += m1dx.Text + delim;
-      s += m1dy.Text + delim;
 
       s += m2x1.Text + delim;
       s += m2y1.Text + delim;
       s += m2x2.Text + delim;
       s += m2y2.Text + delim;
-      s += m2dx.Text + delim;
-      s += m2dy.Text + delim;
 
       return s;
     }
@@ -136,23 +143,30 @@ namespace _3DRaceTrackConverterFrontend
           m1y1.Text.Length == 0 ||
           m1x2.Text.Length == 0 ||
           m1y2.Text.Length == 0 ||
-          m1dx.Text.Length == 0 ||
-          m1dy.Text.Length == 0 ||
 
           m2x1.Text.Length == 0 ||
           m2y1.Text.Length == 0 ||
           m2x2.Text.Length == 0 ||
-          m2y2.Text.Length == 0 ||
-          m2dx.Text.Length == 0 ||
-          m2dy.Text.Length == 0
+          m2y2.Text.Length == 0 
         );
     }
 
-    private void button2_Click(object sender, EventArgs e)
+    bool PathsContainSpaces()
+    {
+      return (trackPath.Contains(" ") || gradientPath.Contains(" "));
+    }
+
+    private void btn_go_Click(object sender, EventArgs e)
     {
       if (AllFieldsFilled() == false)
       {
         MessageBox.Show("Not all fields valid.");
+        return;
+      }
+
+      if (PathsContainSpaces() == true)
+      {
+        MessageBox.Show("Paths contain spaces, which are not allowed.");
         return;
       }
 
@@ -180,6 +194,83 @@ namespace _3DRaceTrackConverterFrontend
       if (!int.TryParse(t.Text, NumberStyles.Integer, null, out amount))
       {
         t.Text = "";
+      }
+    }
+
+    private void btn_load_Click(object sender, EventArgs e)
+    {
+      DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+      if (result != DialogResult.OK) // Test result.
+      {
+        return;
+      }
+
+      string chunk = File.ReadAllText(openFileDialog1.FileName);
+      List<string> config_muddy = chunk.Split('\r').ToList();
+      config.RemoveRange(0, config.Count);
+      foreach (var s in config_muddy)
+      {
+        string n = s.Replace("\n","");
+        config.Add(n);
+      }
+
+      int i = 0;
+
+      pictureBox_preview.Enabled = false;
+      trackPath = config[i++];
+      try
+      {
+        pictureBox_main.ImageLocation = trackPath;
+        pictureBox_preview.ImageLocation = trackPath;
+        lbl_image.Text = trackPath;
+        pictureBox_preview.Enabled = true;
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Error opening track image file.");
+      }
+
+      gradientPath = config[i++];
+      try
+      {
+        pictureBox_gradient.ImageLocation = gradientPath;
+        lbl_gradient.Text = gradientPath;
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Error opening gradient image file.");
+      }
+
+      m1x1.Text = config[i++];
+      m1y1.Text = config[i++];
+      m1x2.Text = config[i++];
+      m1y2.Text = config[i++];
+
+
+      m2x1.Text = config[i++];
+      m2y1.Text = config[i++];
+      m2x2.Text = config[i++];
+      m2y2.Text = config[i++];
+    }
+
+    private void btn_save_Click(object sender, EventArgs e)
+    {
+      SaveFileDialog save = new SaveFileDialog();
+
+      save.FileName = "config.txt";
+
+      save.Filter = "Text File | *.txt";
+
+      if (save.ShowDialog() == DialogResult.OK)
+      {
+        StreamWriter writer = new StreamWriter(save.OpenFile());
+
+        for (int i = 0; i < config.Count; i++)
+        {
+          writer.WriteLine(config[i].ToString());
+        }
+        writer.Dispose();
+        writer.Close();
       }
     }
   }

@@ -31,12 +31,6 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
       this.panel1 = new System.Windows.Forms.Panel();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
-      this.panel5 = new System.Windows.Forms.Panel();
-      this.label8 = new System.Windows.Forms.Label();
-      this.m2dx = new System.Windows.Forms.TextBox();
-      this.m2dy = new System.Windows.Forms.TextBox();
-      this.label9 = new System.Windows.Forms.Label();
-      this.label10 = new System.Windows.Forms.Label();
       this.panel6 = new System.Windows.Forms.Panel();
       this.m2x2 = new System.Windows.Forms.TextBox();
       this.label11 = new System.Windows.Forms.Label();
@@ -48,12 +42,6 @@
       this.label14 = new System.Windows.Forms.Label();
       this.m2y1 = new System.Windows.Forms.TextBox();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
-      this.panel9 = new System.Windows.Forms.Panel();
-      this.label7 = new System.Windows.Forms.Label();
-      this.m1dx = new System.Windows.Forms.TextBox();
-      this.m1dy = new System.Windows.Forms.TextBox();
-      this.label6 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
       this.panel4 = new System.Windows.Forms.Panel();
       this.m1x2 = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
@@ -72,18 +60,18 @@
       this.pictureBox_main = new System.Windows.Forms.PictureBox();
       this.panel7 = new System.Windows.Forms.Panel();
       this.pictureBox_gradient = new System.Windows.Forms.PictureBox();
-      this.btm_go = new System.Windows.Forms.Button();
+      this.btn_go = new System.Windows.Forms.Button();
       this.lbl_gradient = new System.Windows.Forms.Label();
       this.checkBox1 = new System.Windows.Forms.CheckBox();
       this.panel8 = new System.Windows.Forms.Panel();
       this.btn_gradient = new System.Windows.Forms.Button();
+      this.btn_load = new System.Windows.Forms.Button();
+      this.btn_save = new System.Windows.Forms.Button();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
-      this.panel5.SuspendLayout();
       this.panel6.SuspendLayout();
       this.panel10.SuspendLayout();
       this.groupBox1.SuspendLayout();
-      this.panel9.SuspendLayout();
       this.panel4.SuspendLayout();
       this.panel3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox_preview)).BeginInit();
@@ -103,78 +91,19 @@
       this.panel1.Controls.Add(this.btn_browseImage);
       this.panel1.Location = new System.Drawing.Point(725, 12);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(290, 545);
+      this.panel1.Size = new System.Drawing.Size(290, 513);
       this.panel1.TabIndex = 1000;
       // 
       // groupBox2
       // 
-      this.groupBox2.Controls.Add(this.panel5);
       this.groupBox2.Controls.Add(this.panel6);
       this.groupBox2.Controls.Add(this.panel10);
-      this.groupBox2.Location = new System.Drawing.Point(22, 414);
+      this.groupBox2.Location = new System.Drawing.Point(22, 406);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(243, 126);
+      this.groupBox2.Size = new System.Drawing.Size(243, 90);
       this.groupBox2.TabIndex = 1000;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Mask 2";
-      // 
-      // panel5
-      // 
-      this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.panel5.Controls.Add(this.label8);
-      this.panel5.Controls.Add(this.m2dx);
-      this.panel5.Controls.Add(this.m2dy);
-      this.panel5.Controls.Add(this.label9);
-      this.panel5.Controls.Add(this.label10);
-      this.panel5.Location = new System.Drawing.Point(7, 89);
-      this.panel5.Name = "panel5";
-      this.panel5.Size = new System.Drawing.Size(229, 29);
-      this.panel5.TabIndex = 5;
-      // 
-      // label8
-      // 
-      this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(20, 7);
-      this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(88, 13);
-      this.label8.TabIndex = 5;
-      this.label8.Text = "Starting Direction";
-      // 
-      // m2dx
-      // 
-      this.m2dx.Location = new System.Drawing.Point(137, 4);
-      this.m2dx.Name = "m2dx";
-      this.m2dx.Size = new System.Drawing.Size(30, 20);
-      this.m2dx.TabIndex = 103;
-      this.m2dx.Text = "1";
-      this.m2dx.Leave += new System.EventHandler(this.coordinate_Leave);
-      // 
-      // m2dy
-      // 
-      this.m2dy.Location = new System.Drawing.Point(194, 4);
-      this.m2dy.Name = "m2dy";
-      this.m2dy.Size = new System.Drawing.Size(30, 20);
-      this.m2dy.TabIndex = 104;
-      this.m2dy.Text = "1";
-      this.m2dy.Leave += new System.EventHandler(this.coordinate_Leave);
-      // 
-      // label9
-      // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(119, 7);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(12, 13);
-      this.label9.TabIndex = 1;
-      this.label9.Text = "x";
-      // 
-      // label10
-      // 
-      this.label10.AutoSize = true;
-      this.label10.Location = new System.Drawing.Point(176, 7);
-      this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(12, 13);
-      this.label10.TabIndex = 1;
-      this.label10.Text = "y";
       // 
       // panel6
       // 
@@ -271,73 +200,14 @@
       // 
       // groupBox1
       // 
-      this.groupBox1.Controls.Add(this.panel9);
       this.groupBox1.Controls.Add(this.panel4);
       this.groupBox1.Controls.Add(this.panel3);
-      this.groupBox1.Location = new System.Drawing.Point(22, 286);
+      this.groupBox1.Location = new System.Drawing.Point(22, 307);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(243, 126);
+      this.groupBox1.Size = new System.Drawing.Size(243, 93);
       this.groupBox1.TabIndex = 1000;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Mask 1";
-      // 
-      // panel9
-      // 
-      this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.panel9.Controls.Add(this.label7);
-      this.panel9.Controls.Add(this.m1dx);
-      this.panel9.Controls.Add(this.m1dy);
-      this.panel9.Controls.Add(this.label6);
-      this.panel9.Controls.Add(this.label5);
-      this.panel9.Location = new System.Drawing.Point(7, 89);
-      this.panel9.Name = "panel9";
-      this.panel9.Size = new System.Drawing.Size(229, 29);
-      this.panel9.TabIndex = 5;
-      // 
-      // label7
-      // 
-      this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(20, 7);
-      this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(88, 13);
-      this.label7.TabIndex = 5;
-      this.label7.Text = "Starting Direction";
-      // 
-      // m1dx
-      // 
-      this.m1dx.Location = new System.Drawing.Point(137, 4);
-      this.m1dx.Name = "m1dx";
-      this.m1dx.Size = new System.Drawing.Size(30, 20);
-      this.m1dx.TabIndex = 101;
-      this.m1dx.Text = "1";
-      this.m1dx.Leave += new System.EventHandler(this.coordinate_Leave);
-      // 
-      // m1dy
-      // 
-      this.m1dy.Location = new System.Drawing.Point(194, 4);
-      this.m1dy.Name = "m1dy";
-      this.m1dy.Size = new System.Drawing.Size(30, 20);
-      this.m1dy.TabIndex = 102;
-      this.m1dy.Text = "1";
-      this.m1dy.Leave += new System.EventHandler(this.coordinate_Leave);
-      // 
-      // label6
-      // 
-      this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(119, 7);
-      this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(12, 13);
-      this.label6.TabIndex = 1;
-      this.label6.Text = "x";
-      // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(176, 7);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(12, 13);
-      this.label5.TabIndex = 1;
-      this.label5.Text = "y";
       // 
       // panel4
       // 
@@ -436,7 +306,7 @@
       this.pictureBox_preview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.pictureBox_preview.Cursor = System.Windows.Forms.Cursors.Cross;
       this.pictureBox_preview.Enabled = false;
-      this.pictureBox_preview.Location = new System.Drawing.Point(22, 37);
+      this.pictureBox_preview.Location = new System.Drawing.Point(22, 58);
       this.pictureBox_preview.Name = "pictureBox_preview";
       this.pictureBox_preview.Size = new System.Drawing.Size(243, 243);
       this.pictureBox_preview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -448,9 +318,9 @@
       // 
       // btn_browseImage
       // 
-      this.btn_browseImage.Location = new System.Drawing.Point(22, 3);
+      this.btn_browseImage.Location = new System.Drawing.Point(22, 12);
       this.btn_browseImage.Name = "btn_browseImage";
-      this.btn_browseImage.Size = new System.Drawing.Size(243, 27);
+      this.btn_browseImage.Size = new System.Drawing.Size(243, 34);
       this.btn_browseImage.TabIndex = 1;
       this.btn_browseImage.Text = "Browse for Track";
       this.btn_browseImage.UseVisualStyleBackColor = false;
@@ -459,10 +329,11 @@
       // lbl_image
       // 
       this.lbl_image.AutoSize = true;
-      this.lbl_image.Location = new System.Drawing.Point(13, 564);
+      this.lbl_image.Location = new System.Drawing.Point(12, 528);
       this.lbl_image.Name = "lbl_image";
-      this.lbl_image.Size = new System.Drawing.Size(0, 13);
+      this.lbl_image.Size = new System.Drawing.Size(71, 13);
       this.lbl_image.TabIndex = 2;
+      this.lbl_image.Text = "This is a label";
       // 
       // openFileDialog1
       // 
@@ -474,7 +345,7 @@
       this.panel2.Controls.Add(this.pictureBox_main);
       this.panel2.Location = new System.Drawing.Point(16, 12);
       this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(702, 545);
+      this.panel2.Size = new System.Drawing.Size(702, 513);
       this.panel2.TabIndex = 1000;
       // 
       // pictureBox_main
@@ -494,7 +365,7 @@
       this.panel7.Controls.Add(this.pictureBox_gradient);
       this.panel7.Cursor = System.Windows.Forms.Cursors.No;
       this.panel7.Enabled = false;
-      this.panel7.Location = new System.Drawing.Point(16, 581);
+      this.panel7.Location = new System.Drawing.Point(15, 560);
       this.panel7.Name = "panel7";
       this.panel7.Size = new System.Drawing.Size(702, 66);
       this.panel7.TabIndex = 1000;
@@ -510,28 +381,29 @@
       this.pictureBox_gradient.TabStop = false;
       this.pictureBox_gradient.WaitOnLoad = true;
       // 
-      // btm_go
+      // btn_go
       // 
-      this.btm_go.Location = new System.Drawing.Point(725, 653);
-      this.btm_go.Name = "btm_go";
-      this.btm_go.Size = new System.Drawing.Size(160, 27);
-      this.btm_go.TabIndex = 12;
-      this.btm_go.Text = "GO";
-      this.btm_go.UseVisualStyleBackColor = false;
-      this.btm_go.Click += new System.EventHandler(this.button2_Click);
+      this.btn_go.Location = new System.Drawing.Point(727, 640);
+      this.btn_go.Name = "btn_go";
+      this.btn_go.Size = new System.Drawing.Size(137, 36);
+      this.btn_go.TabIndex = 12;
+      this.btn_go.Text = "GO";
+      this.btn_go.UseVisualStyleBackColor = false;
+      this.btn_go.Click += new System.EventHandler(this.btn_go_Click);
       // 
       // lbl_gradient
       // 
       this.lbl_gradient.AutoSize = true;
-      this.lbl_gradient.Location = new System.Drawing.Point(13, 650);
+      this.lbl_gradient.Location = new System.Drawing.Point(13, 629);
       this.lbl_gradient.Name = "lbl_gradient";
-      this.lbl_gradient.Size = new System.Drawing.Size(0, 13);
+      this.lbl_gradient.Size = new System.Drawing.Size(71, 13);
       this.lbl_gradient.TabIndex = 2;
+      this.lbl_gradient.Text = "This is a label";
       // 
       // checkBox1
       // 
       this.checkBox1.AutoSize = true;
-      this.checkBox1.Location = new System.Drawing.Point(891, 659);
+      this.checkBox1.Location = new System.Drawing.Point(878, 657);
       this.checkBox1.Name = "checkBox1";
       this.checkBox1.Size = new System.Drawing.Size(124, 17);
       this.checkBox1.TabIndex = 11;
@@ -542,20 +414,40 @@
       // 
       this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.panel8.Controls.Add(this.btn_gradient);
-      this.panel8.Location = new System.Drawing.Point(725, 581);
+      this.panel8.Location = new System.Drawing.Point(725, 560);
       this.panel8.Name = "panel8";
       this.panel8.Size = new System.Drawing.Size(290, 66);
       this.panel8.TabIndex = 1000;
       // 
       // btn_gradient
       // 
-      this.btn_gradient.Location = new System.Drawing.Point(22, 22);
+      this.btn_gradient.Location = new System.Drawing.Point(22, 14);
       this.btn_gradient.Name = "btn_gradient";
-      this.btn_gradient.Size = new System.Drawing.Size(243, 27);
+      this.btn_gradient.Size = new System.Drawing.Size(243, 37);
       this.btn_gradient.TabIndex = 10;
       this.btn_gradient.Text = "Browse for Gradient";
       this.btn_gradient.UseVisualStyleBackColor = false;
       this.btn_gradient.Click += new System.EventHandler(this.btn_gradient_Click);
+      // 
+      // btn_load
+      // 
+      this.btn_load.Location = new System.Drawing.Point(260, 638);
+      this.btn_load.Name = "btn_load";
+      this.btn_load.Size = new System.Drawing.Size(137, 36);
+      this.btn_load.TabIndex = 12;
+      this.btn_load.Text = "Load Config";
+      this.btn_load.UseVisualStyleBackColor = false;
+      this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
+      // 
+      // btn_save
+      // 
+      this.btn_save.Location = new System.Drawing.Point(403, 638);
+      this.btn_save.Name = "btn_save";
+      this.btn_save.Size = new System.Drawing.Size(137, 36);
+      this.btn_save.TabIndex = 12;
+      this.btn_save.Text = "Save Config";
+      this.btn_save.UseVisualStyleBackColor = false;
+      this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
       // 
       // Form1
       // 
@@ -568,7 +460,9 @@
       this.Controls.Add(this.panel2);
       this.Controls.Add(this.lbl_gradient);
       this.Controls.Add(this.lbl_image);
-      this.Controls.Add(this.btm_go);
+      this.Controls.Add(this.btn_save);
+      this.Controls.Add(this.btn_load);
+      this.Controls.Add(this.btn_go);
       this.Controls.Add(this.panel1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Form1";
@@ -576,15 +470,11 @@
       this.Load += new System.EventHandler(this.Form1_Load);
       this.panel1.ResumeLayout(false);
       this.groupBox2.ResumeLayout(false);
-      this.panel5.ResumeLayout(false);
-      this.panel5.PerformLayout();
       this.panel6.ResumeLayout(false);
       this.panel6.PerformLayout();
       this.panel10.ResumeLayout(false);
       this.panel10.PerformLayout();
       this.groupBox1.ResumeLayout(false);
-      this.panel9.ResumeLayout(false);
-      this.panel9.PerformLayout();
       this.panel4.ResumeLayout(false);
       this.panel4.PerformLayout();
       this.panel3.ResumeLayout(false);
@@ -613,18 +503,12 @@
     private System.Windows.Forms.Panel panel3;
     private System.Windows.Forms.Panel panel7;
     private System.Windows.Forms.PictureBox pictureBox_gradient;
-    private System.Windows.Forms.Button btm_go;
+    private System.Windows.Forms.Button btn_go;
     private System.Windows.Forms.Label lbl_gradient;
     private System.Windows.Forms.CheckBox checkBox1;
     private System.Windows.Forms.Panel panel8;
     private System.Windows.Forms.Button btn_gradient;
     private System.Windows.Forms.GroupBox groupBox2;
-    private System.Windows.Forms.Panel panel5;
-    private System.Windows.Forms.Label label8;
-    private System.Windows.Forms.TextBox m2dx;
-    private System.Windows.Forms.TextBox m2dy;
-    private System.Windows.Forms.Label label9;
-    private System.Windows.Forms.Label label10;
     private System.Windows.Forms.Panel panel6;
     private System.Windows.Forms.TextBox m2x2;
     private System.Windows.Forms.Label label11;
@@ -635,12 +519,6 @@
     private System.Windows.Forms.Label label13;
     private System.Windows.Forms.Label label14;
     private System.Windows.Forms.TextBox m2y1;
-    private System.Windows.Forms.Panel panel9;
-    private System.Windows.Forms.Label label7;
-    private System.Windows.Forms.TextBox m1dx;
-    private System.Windows.Forms.TextBox m1dy;
-    private System.Windows.Forms.Label label6;
-    private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Panel panel4;
     private System.Windows.Forms.TextBox m1x2;
     private System.Windows.Forms.Label label3;
@@ -650,6 +528,8 @@
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.TextBox m1y1;
+    private System.Windows.Forms.Button btn_load;
+    private System.Windows.Forms.Button btn_save;
   }
 }
 
