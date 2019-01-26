@@ -105,7 +105,7 @@
       this.panel1.Controls.Add(this.btn_browseImage);
       this.panel1.Location = new System.Drawing.Point(722, 11);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(290, 524);
+      this.panel1.Size = new System.Drawing.Size(290, 513);
       this.panel1.TabIndex = 1000;
       // 
       // groupBox2
@@ -113,7 +113,7 @@
       this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.groupBox2.Controls.Add(this.panel6);
       this.groupBox2.Controls.Add(this.panel10);
-      this.groupBox2.Location = new System.Drawing.Point(22, 406);
+      this.groupBox2.Location = new System.Drawing.Point(22, 408);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Size = new System.Drawing.Size(243, 90);
       this.groupBox2.TabIndex = 1000;
@@ -245,7 +245,7 @@
       this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.groupBox1.Controls.Add(this.panel4);
       this.groupBox1.Controls.Add(this.panel3);
-      this.groupBox1.Location = new System.Drawing.Point(22, 307);
+      this.groupBox1.Location = new System.Drawing.Point(22, 309);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Size = new System.Drawing.Size(243, 93);
       this.groupBox1.TabIndex = 1000;

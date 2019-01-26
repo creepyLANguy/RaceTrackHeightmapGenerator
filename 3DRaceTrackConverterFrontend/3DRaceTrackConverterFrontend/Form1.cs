@@ -39,7 +39,7 @@ namespace _3DRaceTrackConverterFrontend
     private void Form1_Load(object sender, EventArgs e)
     {
       //this.FormBorderStyle = FormBorderStyle.FixedSingle;
-      this.MaximizeBox = false;
+      //this.MaximizeBox = false;
       btn_browseImage.Focus();
       lbl_image.Text = lbl_gradient.Text = "";
 
