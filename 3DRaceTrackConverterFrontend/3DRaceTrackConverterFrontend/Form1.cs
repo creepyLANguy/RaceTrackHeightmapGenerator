@@ -476,5 +476,72 @@ namespace _3DRaceTrackConverterFrontend
       Unlock();
     }
 
+    private void btn_m1p1_Click(object sender, EventArgs e)
+    {
+      if (tb_x.Text.Length <= 0 || tb_y.Text.Length <= 0)
+      {
+        return;
+      }
+      if (pictureBox_main.Image == null)
+      {
+        return;
+      }
+
+      m1x1.Text = tb_x.Text;
+      m1y1.Text = tb_y.Text;
+      coordinate_Leave_x(m1x1, null);
+      coordinate_Leave_y(m1y1, null);
+    }
+
+    private void btn_m1p2_Click(object sender, EventArgs e)
+    {
+      if (tb_x.Text.Length <= 0 || tb_y.Text.Length <= 0)
+      {
+        return;
+      }
+      if (pictureBox_main.Image == null)
+      {
+        return;
+      }
+
+      m1x2.Text = tb_x.Text;
+      m1y2.Text = tb_y.Text;
+      coordinate_Leave_x(m1x2, null);
+      coordinate_Leave_y(m1y2, null);
+    }
+
+    private void btn_m2p1_Click(object sender, EventArgs e)
+    {
+      if (tb_x.Text.Length <= 0 || tb_y.Text.Length <= 0)
+      {
+        return;
+      }
+      if (pictureBox_main.Image == null)
+      {
+        return;
+      }
+
+      m2x1.Text = tb_x.Text;
+      m2y1.Text = tb_y.Text;
+      coordinate_Leave_x(m2x1, null);
+      coordinate_Leave_y(m2y1, null);
+    }
+
+    private void btn_m2p2_Click(object sender, EventArgs e)
+    {
+      if (tb_x.Text.Length <= 0 || tb_y.Text.Length <= 0)
+      {
+        return;
+      }
+      if (pictureBox_main.Image == null)
+      {
+        return;
+      }
+
+      m2x2.Text = tb_x.Text;
+      m2y2.Text = tb_y.Text;
+      coordinate_Leave_x(m2x2, null);
+      coordinate_Leave_y(m2y2, null);
+    }
   }
 }
