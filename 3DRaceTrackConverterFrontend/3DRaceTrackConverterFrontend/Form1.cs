@@ -26,6 +26,8 @@ namespace _3DRaceTrackConverterFrontend
 
     List<string> config = new List<string>();
 
+    int[] reds = new int[8];
+
     public Form1()
     {
       InitializeComponent();
@@ -37,6 +39,14 @@ namespace _3DRaceTrackConverterFrontend
       this.MaximizeBox = false;
       btn_browseImage.Focus();
       lbl_image.Text = lbl_gradient.Text = "";
+    }
+
+    void PopulatePictureBoxes()
+    {
+      pictureBox_main.ImageLocation = trackPath;
+      pictureBox_preview.ImageLocation = trackPath;
+      pictureBox_main.Refresh();
+      pictureBox_preview.Refresh();
     }
 
     private void btn_browseImage_Click(object sender, EventArgs e)
@@ -51,10 +61,11 @@ namespace _3DRaceTrackConverterFrontend
       trackPath = openFileDialog1.FileName;
       try
       {
-        pictureBox_main.ImageLocation = trackPath;
-        pictureBox_preview.ImageLocation = trackPath;
+        PopulatePictureBoxes();
         lbl_image.Text = trackPath;
         pictureBox_preview.Enabled = true;
+        DrawMasks();
+        pictureBox_main.Location = new Point(0, 0);
       }
       catch (Exception)
       {
@@ -178,7 +189,49 @@ namespace _3DRaceTrackConverterFrontend
       int result = process.ExitCode;
     }
 
-    private void coordinate_Leave(object sender, EventArgs e)
+    void SetReds()
+    {
+      int r = -1;
+
+      int.TryParse(m1x1.Text, NumberStyles.Integer, null, out reds[++r]);
+      int.TryParse(m1y1.Text, NumberStyles.Integer, null, out reds[++r]);
+                                                                     
+      int.TryParse(m1x2.Text, NumberStyles.Integer, null, out reds[++r]);
+      int.TryParse(m1y2.Text, NumberStyles.Integer, null, out reds[++r]);
+                                                                     
+      int.TryParse(m2x1.Text, NumberStyles.Integer, null, out reds[++r]);
+      int.TryParse(m2y1.Text, NumberStyles.Integer, null, out reds[++r]);
+                                                                     
+      int.TryParse(m2x2.Text, NumberStyles.Integer, null, out reds[++r]);
+      int.TryParse(m2y2.Text, NumberStyles.Integer, null, out reds[++r]);
+
+      for (int i = 0; i < reds.Length; ++i)
+      {
+        (pictureBox_main.Image as Bitmap).SetPixel(reds[i], reds[++i], Color.Red);
+      }
+    }
+
+    void ResetReds()
+    {
+      if (pictureBox_main.Image == null)
+      {
+        return;
+      }
+
+      for (int i = 0; i < reds.Length; ++i)
+      {
+        (pictureBox_main.Image as Bitmap).SetPixel(reds[i], reds[++i], Color.Gray);
+      }
+    }
+
+    void DrawMasks()
+    {
+      ResetReds();
+      SetReds();
+      pictureBox_main.Refresh();
+    }
+
+    private int IntValidation(object sender)
     {
       TextBox t = null;
       try
@@ -187,7 +240,7 @@ namespace _3DRaceTrackConverterFrontend
       }
       catch (Exception)
       {
-        return;
+        return 0;
       }
 
       int amount = 0;
@@ -195,7 +248,30 @@ namespace _3DRaceTrackConverterFrontend
       {
         t.Text = "";
       }
+
+      return amount;
     }
+
+    private void coordinate_Leave_x(object sender, EventArgs e)
+    {
+      int amount = IntValidation(sender);
+      if (amount >= pictureBox_main.Image.Width)
+      {
+        ((TextBox)sender).Text = "";
+      }
+      DrawMasks();
+    }
+
+    private void coordinate_Leave_y(object sender, EventArgs e)
+    {
+      int amount = IntValidation(sender);
+      if (amount >= pictureBox_main.Image.Height)
+      {
+        ((TextBox)sender).Text = "";
+      }
+      DrawMasks();
+    }
+
 
     private void btn_load_Click(object sender, EventArgs e)
     {
@@ -220,8 +296,7 @@ namespace _3DRaceTrackConverterFrontend
       trackPath = config[i++];
       try
       {
-        pictureBox_main.ImageLocation = trackPath;
-        pictureBox_preview.ImageLocation = trackPath;
+        PopulatePictureBoxes();
         lbl_image.Text = trackPath;
         pictureBox_preview.Enabled = true;
       }
@@ -251,6 +326,8 @@ namespace _3DRaceTrackConverterFrontend
       m2y1.Text = config[i++];
       m2x2.Text = config[i++];
       m2y2.Text = config[i++];
+
+      DrawMasks();
     }
 
     private void btn_save_Click(object sender, EventArgs e)
