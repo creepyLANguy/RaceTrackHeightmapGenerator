@@ -116,7 +116,6 @@
       this.panel6.Name = "panel6";
       this.panel6.Size = new System.Drawing.Size(229, 29);
       this.panel6.TabIndex = 5;
-      this.panel6.Leave += new System.EventHandler(this.coordinate_Leave);
       // 
       // m2x2
       // 
@@ -124,7 +123,7 @@
       this.m2x2.Name = "m2x2";
       this.m2x2.Size = new System.Drawing.Size(81, 20);
       this.m2x2.TabIndex = 8;
-      this.m2x2.Leave += new System.EventHandler(this.coordinate_Leave);
+      this.m2x2.Leave += new System.EventHandler(this.coordinate_Leave_x);
       // 
       // label11
       // 
@@ -150,7 +149,7 @@
       this.m2y2.Name = "m2y2";
       this.m2y2.Size = new System.Drawing.Size(81, 20);
       this.m2y2.TabIndex = 9;
-      this.m2y2.Leave += new System.EventHandler(this.coordinate_Leave);
+      this.m2y2.Leave += new System.EventHandler(this.coordinate_Leave_y);
       // 
       // panel10
       // 
@@ -170,7 +169,7 @@
       this.m2x1.Name = "m2x1";
       this.m2x1.Size = new System.Drawing.Size(81, 20);
       this.m2x1.TabIndex = 6;
-      this.m2x1.Leave += new System.EventHandler(this.coordinate_Leave);
+      this.m2x1.Leave += new System.EventHandler(this.coordinate_Leave_x);
       // 
       // label13
       // 
@@ -196,7 +195,7 @@
       this.m2y1.Name = "m2y1";
       this.m2y1.Size = new System.Drawing.Size(81, 20);
       this.m2y1.TabIndex = 7;
-      this.m2y1.Leave += new System.EventHandler(this.coordinate_Leave);
+      this.m2y1.Leave += new System.EventHandler(this.coordinate_Leave_y);
       // 
       // groupBox1
       // 
@@ -227,7 +226,7 @@
       this.m1x2.Name = "m1x2";
       this.m1x2.Size = new System.Drawing.Size(81, 20);
       this.m1x2.TabIndex = 4;
-      this.m1x2.Leave += new System.EventHandler(this.coordinate_Leave);
+      this.m1x2.Leave += new System.EventHandler(this.coordinate_Leave_x);
       // 
       // label3
       // 
@@ -253,7 +252,7 @@
       this.m1y2.Name = "m1y2";
       this.m1y2.Size = new System.Drawing.Size(81, 20);
       this.m1y2.TabIndex = 5;
-      this.m1y2.Leave += new System.EventHandler(this.coordinate_Leave);
+      this.m1y2.Leave += new System.EventHandler(this.coordinate_Leave_y);
       // 
       // panel3
       // 
@@ -273,7 +272,7 @@
       this.m1x1.Name = "m1x1";
       this.m1x1.Size = new System.Drawing.Size(81, 20);
       this.m1x1.TabIndex = 2;
-      this.m1x1.Leave += new System.EventHandler(this.coordinate_Leave);
+      this.m1x1.Leave += new System.EventHandler(this.coordinate_Leave_x);
       // 
       // label2
       // 
@@ -299,13 +298,15 @@
       this.m1y1.Name = "m1y1";
       this.m1y1.Size = new System.Drawing.Size(81, 20);
       this.m1y1.TabIndex = 3;
-      this.m1y1.Leave += new System.EventHandler(this.coordinate_Leave);
+      this.m1y1.Leave += new System.EventHandler(this.coordinate_Leave_y);
       // 
       // pictureBox_preview
       // 
+      this.pictureBox_preview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_preview.BackgroundImage")));
       this.pictureBox_preview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.pictureBox_preview.Cursor = System.Windows.Forms.Cursors.Cross;
       this.pictureBox_preview.Enabled = false;
+      this.pictureBox_preview.ErrorImage = null;
       this.pictureBox_preview.Location = new System.Drawing.Point(22, 58);
       this.pictureBox_preview.Name = "pictureBox_preview";
       this.pictureBox_preview.Size = new System.Drawing.Size(243, 243);
