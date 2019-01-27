@@ -61,8 +61,8 @@
       this.lbl_image = new System.Windows.Forms.Label();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.panel2 = new System.Windows.Forms.Panel();
-      this.pictureBox_main = new System.Windows.Forms.PictureBox();
       this.lbl_processing2 = new System.Windows.Forms.Button();
+      this.pictureBox_main = new System.Windows.Forms.PictureBox();
       this.panel7 = new System.Windows.Forms.Panel();
       this.pictureBox_gradient = new System.Windows.Forms.PictureBox();
       this.btn_go = new System.Windows.Forms.Button();
@@ -77,6 +77,7 @@
       this.tb_y = new System.Windows.Forms.TextBox();
       this.lbl_y = new System.Windows.Forms.Label();
       this.panel_all = new System.Windows.Forms.Panel();
+      this.magnifyToggle = new System.Windows.Forms.CheckBox();
       this.button1 = new System.Windows.Forms.Button();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -113,6 +114,7 @@
       this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.groupBox2.Controls.Add(this.panel6);
       this.groupBox2.Controls.Add(this.panel10);
+      this.groupBox2.Enabled = false;
       this.groupBox2.Location = new System.Drawing.Point(22, 408);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Size = new System.Drawing.Size(243, 90);
@@ -245,6 +247,7 @@
       this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.groupBox1.Controls.Add(this.panel4);
       this.groupBox1.Controls.Add(this.panel3);
+      this.groupBox1.Enabled = false;
       this.groupBox1.Location = new System.Drawing.Point(22, 309);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Size = new System.Drawing.Size(243, 93);
@@ -425,20 +428,6 @@
       this.panel2.Size = new System.Drawing.Size(702, 513);
       this.panel2.TabIndex = 1000;
       // 
-      // pictureBox_main
-      // 
-      this.pictureBox_main.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_main.BackgroundImage")));
-      this.pictureBox_main.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.pictureBox_main.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_main.InitialImage")));
-      this.pictureBox_main.Location = new System.Drawing.Point(100, 3);
-      this.pictureBox_main.Name = "pictureBox_main";
-      this.pictureBox_main.Size = new System.Drawing.Size(500, 500);
-      this.pictureBox_main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureBox_main.TabIndex = 0;
-      this.pictureBox_main.TabStop = false;
-      this.pictureBox_main.WaitOnLoad = true;
-      this.pictureBox_main.Click += new System.EventHandler(this.pictureBox_main_Click);
-      // 
       // lbl_processing2
       // 
       this.lbl_processing2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -455,6 +444,22 @@
       this.lbl_processing2.Text = "Processing...";
       this.lbl_processing2.UseVisualStyleBackColor = true;
       this.lbl_processing2.Visible = false;
+      // 
+      // pictureBox_main
+      // 
+      this.pictureBox_main.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_main.BackgroundImage")));
+      this.pictureBox_main.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.pictureBox_main.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_main.InitialImage")));
+      this.pictureBox_main.Location = new System.Drawing.Point(100, 3);
+      this.pictureBox_main.Name = "pictureBox_main";
+      this.pictureBox_main.Size = new System.Drawing.Size(500, 500);
+      this.pictureBox_main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureBox_main.TabIndex = 0;
+      this.pictureBox_main.TabStop = false;
+      this.pictureBox_main.WaitOnLoad = true;
+      this.pictureBox_main.Click += new System.EventHandler(this.pictureBox_main_Click);
+      this.pictureBox_main.MouseLeave += new System.EventHandler(this.pictureBox_main_MouseLeave);
+      this.pictureBox_main.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_main_MouseMove);
       // 
       // panel7
       // 
@@ -561,7 +566,7 @@
       // 
       this.lbl_x.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lbl_x.AutoSize = true;
-      this.lbl_x.Location = new System.Drawing.Point(434, 533);
+      this.lbl_x.Location = new System.Drawing.Point(504, 533);
       this.lbl_x.Name = "lbl_x";
       this.lbl_x.Size = new System.Drawing.Size(14, 13);
       this.lbl_x.TabIndex = 2;
@@ -571,27 +576,27 @@
       // 
       this.tb_x.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.tb_x.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.tb_x.Location = new System.Drawing.Point(454, 530);
+      this.tb_x.Location = new System.Drawing.Point(524, 531);
       this.tb_x.Name = "tb_x";
       this.tb_x.ReadOnly = true;
-      this.tb_x.Size = new System.Drawing.Size(100, 20);
+      this.tb_x.Size = new System.Drawing.Size(70, 20);
       this.tb_x.TabIndex = 1001;
       // 
       // tb_y
       // 
       this.tb_y.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.tb_y.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.tb_y.Location = new System.Drawing.Point(588, 530);
+      this.tb_y.Location = new System.Drawing.Point(620, 530);
       this.tb_y.Name = "tb_y";
       this.tb_y.ReadOnly = true;
-      this.tb_y.Size = new System.Drawing.Size(100, 20);
+      this.tb_y.Size = new System.Drawing.Size(70, 20);
       this.tb_y.TabIndex = 1003;
       // 
       // lbl_y
       // 
       this.lbl_y.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lbl_y.AutoSize = true;
-      this.lbl_y.Location = new System.Drawing.Point(568, 533);
+      this.lbl_y.Location = new System.Drawing.Point(600, 532);
       this.lbl_y.Name = "lbl_y";
       this.lbl_y.Size = new System.Drawing.Size(14, 13);
       this.lbl_y.TabIndex = 1002;
@@ -599,6 +604,7 @@
       // 
       // panel_all
       // 
+      this.panel_all.Controls.Add(this.magnifyToggle);
       this.panel_all.Controls.Add(this.lbl_x);
       this.panel_all.Controls.Add(this.tb_x);
       this.panel_all.Controls.Add(this.button1);
@@ -619,6 +625,19 @@
       this.panel_all.Name = "panel_all";
       this.panel_all.Size = new System.Drawing.Size(1027, 686);
       this.panel_all.TabIndex = 1;
+      // 
+      // magnifyToggle
+      // 
+      this.magnifyToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.magnifyToggle.AutoSize = true;
+      this.magnifyToggle.Checked = true;
+      this.magnifyToggle.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.magnifyToggle.Location = new System.Drawing.Point(411, 532);
+      this.magnifyToggle.Name = "magnifyToggle";
+      this.magnifyToggle.Size = new System.Drawing.Size(63, 17);
+      this.magnifyToggle.TabIndex = 1005;
+      this.magnifyToggle.Text = "Magnify";
+      this.magnifyToggle.UseVisualStyleBackColor = true;
       // 
       // button1
       // 
@@ -721,6 +740,7 @@
     private System.Windows.Forms.Button btn_m1p1;
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button lbl_processing2;
+    private System.Windows.Forms.CheckBox magnifyToggle;
   }
 }
 

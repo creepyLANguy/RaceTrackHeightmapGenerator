@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 //TODO
@@ -24,6 +26,16 @@ namespace _3DRaceTrackConverterFrontend
 
     bool isMouseDown_preview = false;
 
+    bool shouldRestrictPaintsOnResize = false;
+
+    int magnify_X = 50;
+    int magnify_Y = 30;
+    int magnificationScale = 5;
+    IntPtr deskDC = GetDC(IntPtr.Zero);
+    Graphics g;
+
+    Bitmap bmpSmall;
+
     List<string> config = new List<string>();
 
     int[] reds = new int[8];
@@ -38,13 +50,15 @@ namespace _3DRaceTrackConverterFrontend
 
     private void Form1_Load(object sender, EventArgs e)
     {
-      //this.FormBorderStyle = FormBorderStyle.FixedSingle;
-      //this.MaximizeBox = false;
       btn_browseImage.Focus();
       lbl_image.Text = lbl_gradient.Text = "";
 
       offset_x = (int)(0.5 * panel2.Width);
       offset_y = (int)(0.5 * panel2.Height);
+
+      g = Graphics.FromHdc(deskDC);
+      g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+      //g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
     }
 
     void PopulatePictureBoxes()
@@ -59,8 +73,8 @@ namespace _3DRaceTrackConverterFrontend
     {
       openFileDialog1.Filter = "Bitmap files (*.bmp)|*.bmp";
 
-      DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
-      if (result != DialogResult.OK) // Test result.
+      DialogResult result = openFileDialog1.ShowDialog();
+      if (result != DialogResult.OK)
       {
         return;
       }
@@ -74,6 +88,9 @@ namespace _3DRaceTrackConverterFrontend
         pictureBox_preview.Enabled = true;
         DrawMasks();
         pictureBox_main.Location = new Point(0, 0);
+
+        groupBox1.Enabled = true;
+        groupBox2.Enabled = true;
       }
       catch (Exception)
       {
@@ -116,8 +133,8 @@ namespace _3DRaceTrackConverterFrontend
     {
       openFileDialog1.Filter = "Bitmap files (*.bmp)|*.bmp";
 
-      DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
-      if (result != DialogResult.OK) // Test result.
+      DialogResult result = openFileDialog1.ShowDialog();
+      if (result != DialogResult.OK)
       {
         return;
       }
@@ -242,8 +259,8 @@ namespace _3DRaceTrackConverterFrontend
     {
       openFileDialog1.Filter = "Track Data files (*.trk)|*.trk";
 
-      DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
-      if (result != DialogResult.OK) // Test result.
+      DialogResult result = openFileDialog1.ShowDialog();
+      if (result != DialogResult.OK)
       {
         return;
       }
@@ -266,6 +283,8 @@ namespace _3DRaceTrackConverterFrontend
         PopulatePictureBoxes();
         lbl_image.Text = trackPath;
         pictureBox_preview.Enabled = true;
+        groupBox1.Enabled = true;
+        groupBox2.Enabled = true;
       }
       catch (Exception)
       {
@@ -546,12 +565,71 @@ namespace _3DRaceTrackConverterFrontend
 
     private void Form1_ResizeBegin(object sender, EventArgs e)
     {
-      //SuspendLayout();
+      if (shouldRestrictPaintsOnResize)
+      {
+        SuspendLayout();
+      }
     }
 
     private void Form1_ResizeEnd(object sender, EventArgs e)
     {
-      //ResumeLayout(true);
+      if (shouldRestrictPaintsOnResize)
+      {
+        ResumeLayout(true);
+      }
     }
+
+    [DllImport("User32.dll")]
+    public static extern IntPtr GetDC(IntPtr hwnd);
+
+    [DllImport("User32.dll")]
+    public static extern void ReleaseDC(IntPtr dc, IntPtr hwnd);
+
+    private Bitmap CaptureScreen()
+    {
+      Rectangle bounds = Screen.GetBounds(Point.Empty);
+      Bitmap bmp = new Bitmap(bounds.Width, bounds.Height);
+      using (Graphics gr = Graphics.FromImage(bmp))
+      {
+        gr.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
+      }
+      return bmp;
+    }
+
+    private void pictureBox_main_MouseLeave(object sender, EventArgs e)
+    {
+      if (magnifyToggle.Checked)
+      {
+        Refresh();
+      }
+    }
+
+    private void pictureBox_main_MouseMove(object sender, MouseEventArgs e)
+    {
+      if (magnifyToggle.Checked == false)
+      {
+        return;
+      }
+
+      int mouse_x = Cursor.Position.X;
+      int mouse_y = Cursor.Position.Y;
+      
+      bmpSmall = CaptureScreen().Clone
+        (
+          new Rectangle
+          (
+          mouse_x - (magnify_X / 2),
+          mouse_y - (magnify_Y / 2),
+          magnify_X, magnify_Y
+          ),
+        PixelFormat.Format32bppRgb
+        );
+
+      bmpSmall.SetPixel(bmpSmall.Width / 2, bmpSmall.Height / 2, Color.Green);
+
+      Refresh();
+      g.DrawImage(bmpSmall, mouse_x + 15, mouse_y + 15, magnify_X * magnificationScale, magnify_Y * magnificationScale);
+    }
+
   }
 }
