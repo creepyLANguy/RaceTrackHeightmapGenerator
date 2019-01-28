@@ -593,8 +593,6 @@ namespace _3DRaceTrackConverterFrontend
 
     private Bitmap CaptureScreen()
     {
-      //InitGraphics();
-
       Rectangle bounds = Screen.GetBounds(Point.Empty);
       Bitmap bmp = new Bitmap(bounds.Width, bounds.Height);
       using (Graphics gr = Graphics.FromImage(bmp))
@@ -615,6 +613,10 @@ namespace _3DRaceTrackConverterFrontend
     private void pictureBox_main_MouseMove(object sender, MouseEventArgs e)
     {
       if (magnifyToggle.Checked == false)
+      {
+        return;
+      }
+      if (lbl_help.Visible == true)
       {
         return;
       }
@@ -665,6 +667,16 @@ namespace _3DRaceTrackConverterFrontend
       {
         lbl_warning.Visible = false;
       }
+    }
+
+    private void btn_help_Click(object sender, EventArgs e)
+    {
+      lbl_help.Visible = !lbl_help.Visible;
+    }
+
+    private void lbl_help_Click(object sender, EventArgs e)
+    {
+      lbl_help.Visible = false;
     }
   }
 }

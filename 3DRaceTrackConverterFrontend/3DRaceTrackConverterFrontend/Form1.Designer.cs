@@ -61,6 +61,7 @@
       this.lbl_image = new System.Windows.Forms.Label();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.lbl_warning = new System.Windows.Forms.Label();
       this.lbl_processing2 = new System.Windows.Forms.Button();
       this.pictureBox_main = new System.Windows.Forms.PictureBox();
       this.panel7 = new System.Windows.Forms.Panel();
@@ -79,7 +80,8 @@
       this.panel_all = new System.Windows.Forms.Panel();
       this.magnifyToggle = new System.Windows.Forms.CheckBox();
       this.button1 = new System.Windows.Forms.Button();
-      this.lbl_warning = new System.Windows.Forms.Label();
+      this.btn_help = new System.Windows.Forms.Button();
+      this.lbl_help = new System.Windows.Forms.Button();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.panel6.SuspendLayout();
@@ -422,6 +424,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.panel2.Controls.Add(this.lbl_help);
       this.panel2.Controls.Add(this.lbl_warning);
       this.panel2.Controls.Add(this.lbl_processing2);
       this.panel2.Controls.Add(this.pictureBox_main);
@@ -429,6 +432,20 @@
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(702, 513);
       this.panel2.TabIndex = 1000;
+      // 
+      // lbl_warning
+      // 
+      this.lbl_warning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lbl_warning.AutoSize = true;
+      this.lbl_warning.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbl_warning.ForeColor = System.Drawing.Color.Red;
+      this.lbl_warning.Location = new System.Drawing.Point(3, 490);
+      this.lbl_warning.Name = "lbl_warning";
+      this.lbl_warning.Size = new System.Drawing.Size(694, 15);
+      this.lbl_warning.TabIndex = 1006;
+      this.lbl_warning.Text = "WARNING : THIS WINDOW MUST BE USED ON YOUR LEFT-MOST MONITOR FOR THE MAGNIFICATIO" +
+    "N LOUPE TO SHOW.";
+      this.lbl_warning.Visible = false;
       // 
       // lbl_processing2
       // 
@@ -606,6 +623,7 @@
       // 
       // panel_all
       // 
+      this.panel_all.Controls.Add(this.btn_help);
       this.panel_all.Controls.Add(this.magnifyToggle);
       this.panel_all.Controls.Add(this.lbl_x);
       this.panel_all.Controls.Add(this.tb_x);
@@ -657,19 +675,36 @@
       this.button1.Text = "<";
       this.button1.UseVisualStyleBackColor = false;
       // 
-      // lbl_warning
+      // btn_help
       // 
-      this.lbl_warning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.lbl_warning.AutoSize = true;
-      this.lbl_warning.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lbl_warning.ForeColor = System.Drawing.Color.Red;
-      this.lbl_warning.Location = new System.Drawing.Point(3, 490);
-      this.lbl_warning.Name = "lbl_warning";
-      this.lbl_warning.Size = new System.Drawing.Size(694, 15);
-      this.lbl_warning.TabIndex = 1006;
-      this.lbl_warning.Text = "WARNING : THIS WINDOW MUST BE USED ON YOUR LEFT-MOST MONITOR FOR THE MAGNIFICATIO" +
-    "N LOUPE TO SHOW.";
-      this.lbl_warning.Visible = false;
+      this.btn_help.BackColor = System.Drawing.SystemColors.Control;
+      this.btn_help.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btn_help.Location = new System.Drawing.Point(337, 651);
+      this.btn_help.Name = "btn_help";
+      this.btn_help.Size = new System.Drawing.Size(65, 24);
+      this.btn_help.TabIndex = 1006;
+      this.btn_help.Text = "Help";
+      this.btn_help.UseVisualStyleBackColor = false;
+      this.btn_help.Click += new System.EventHandler(this.btn_help_Click);
+      // 
+      // lbl_help
+      // 
+      this.lbl_help.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbl_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+      this.lbl_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.lbl_help.Font = new System.Drawing.Font("Candara", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbl_help.ForeColor = System.Drawing.Color.Black;
+      this.lbl_help.Location = new System.Drawing.Point(3, 3);
+      this.lbl_help.Name = "lbl_help";
+      this.lbl_help.Size = new System.Drawing.Size(694, 505);
+      this.lbl_help.TabIndex = 1007;
+      this.lbl_help.Text = resources.GetString("lbl_help.Text");
+      this.lbl_help.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.lbl_help.UseVisualStyleBackColor = true;
+      this.lbl_help.Visible = false;
+      this.lbl_help.Click += new System.EventHandler(this.lbl_help_Click);
       // 
       // Form1
       // 
@@ -759,6 +794,8 @@
     private System.Windows.Forms.Button lbl_processing2;
     private System.Windows.Forms.CheckBox magnifyToggle;
     private System.Windows.Forms.Label lbl_warning;
+    private System.Windows.Forms.Button btn_help;
+    private System.Windows.Forms.Button lbl_help;
   }
 }
 

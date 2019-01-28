@@ -765,6 +765,31 @@
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="lbl_help.Text" xml:space="preserve">
+    <value>Track:
+ 
+Make sure it has a plain white border of at least 1px. 
+If the edge detector gets stuck at a specific point, manually modify the gradient of that part of your track. It's often just a pixel that needs to change the feature from purely vertical/horizontal to something more diagonal. 
+Your track should also be at least 2px wide at all points.
+It should be a purely black&amp;white image (i.e. monochromatic bmp) but have a normal bmp's colour depth, as processing requires the ability to draw multiple colours to the bmp. 
+Ideally, your track is the result from having exported a vector. 
+
+
+Masks:
+
+Place the masks with one point on black and one on white. These points should be direct neighbours. 
+The masks work best when placed on either side of the track, ie, one on the outer edge and one on the inner edge. 
+Keep in mind that the edge detection will attempt first moving westwards.
+
+
+Gradient Profile:
+
+Ideally a purely black&amp;white bmp. 
+Do not let there be white gaps on the left/right edges, unless that's intentional.
+Make sure to keep some height at even the lowest point so you don't end up with a zero value on the greyscale (bad for blender extrude).
+Make sure that the leftmost point corresponds to the starting points of your masks.
+</value>
+  </data>
   <data name="pictureBox_main.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
