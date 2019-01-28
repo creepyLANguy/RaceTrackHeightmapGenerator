@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 //TODO
@@ -22,19 +23,19 @@ namespace _3DRaceTrackConverterFrontend
     string gradientPath = "";
 
     string delim = " ";
-    const string newline = "\r\n";
 
     bool isMouseDown_preview = false;
 
     bool shouldRestrictPaintsOnResize = false;
 
+    int mouse_x = 0;
+    int mouse_y = 0;
     int magnify_X = 50;
     int magnify_Y = 30;
     int magnificationScale = 5;
-    IntPtr deskDC = GetDC(IntPtr.Zero);
     Graphics g;
-
-    Bitmap bmpSmall;
+    private Bitmap bmp;
+    private int sleepTime = 50;
 
     List<string> config = new List<string>();
 
@@ -48,6 +49,13 @@ namespace _3DRaceTrackConverterFrontend
       InitializeComponent();
     }
 
+    void InitGraphics()
+    {
+      g = Graphics.FromHdc(GetDC(IntPtr.Zero));
+      g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+      //g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+    }
+
     private void Form1_Load(object sender, EventArgs e)
     {
       btn_browseImage.Focus();
@@ -56,9 +64,7 @@ namespace _3DRaceTrackConverterFrontend
       offset_x = (int)(0.5 * panel2.Width);
       offset_y = (int)(0.5 * panel2.Height);
 
-      g = Graphics.FromHdc(deskDC);
-      g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-      //g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+      InitGraphics();
     }
 
     void PopulatePictureBoxes()
@@ -587,6 +593,8 @@ namespace _3DRaceTrackConverterFrontend
 
     private Bitmap CaptureScreen()
     {
+      //InitGraphics();
+
       Rectangle bounds = Screen.GetBounds(Point.Empty);
       Bitmap bmp = new Bitmap(bounds.Width, bounds.Height);
       using (Graphics gr = Graphics.FromImage(bmp))
@@ -611,25 +619,52 @@ namespace _3DRaceTrackConverterFrontend
         return;
       }
 
-      int mouse_x = Cursor.Position.X;
-      int mouse_y = Cursor.Position.Y;
-      
-      bmpSmall = CaptureScreen().Clone
-        (
-          new Rectangle
-          (
-          mouse_x - (magnify_X / 2),
-          mouse_y - (magnify_Y / 2),
-          magnify_X, magnify_Y
-          ),
-        PixelFormat.Format32bppRgb
-        );
+      Thread.Sleep(sleepTime);
 
-      bmpSmall.SetPixel(bmpSmall.Width / 2, bmpSmall.Height / 2, Color.Green);
+      //Avoid redraw if mouse did not actually move;
+      if ((mouse_x == Cursor.Position.X) && (mouse_y == Cursor.Position.Y))
+      {
+        return;
+      }
+
+      mouse_x = Cursor.Position.X;
+      mouse_y = Cursor.Position.Y;
+      
+      Bitmap bmpBig = CaptureScreen();
+
+      Rectangle rect = new Rectangle
+      (
+        mouse_x - (magnify_X / 2),
+        mouse_y - (magnify_Y / 2),
+        magnify_X, magnify_Y
+      );
+
+      //This prevents crashing when movingthe window to a new monitor
+      //that (I'm assuming here) isn't the leftmost display. 
+      //Simply do not draw the loupe.
+      //Perhaps show a little warning... 
+      if  ((mouse_x >= bmpBig.Width) || (mouse_y >= bmpBig.Height))
+      {
+        lbl_warning.Visible = true;
+        return;
+      }
+
+      lbl_warning.Visible = false;
+
+      bmp = bmpBig.Clone(rect,PixelFormat.Format32bppRgb);
+
+      bmp.SetPixel(bmp.Width / 2, bmp.Height / 2, Color.Green);
 
       Refresh();
-      g.DrawImage(bmpSmall, mouse_x + 15, mouse_y + 15, magnify_X * magnificationScale, magnify_Y * magnificationScale);
+      g.DrawImage(bmp, mouse_x + 15, mouse_y + 15, magnify_X * magnificationScale, magnify_Y * magnificationScale);
     }
 
+    private void magnifyToggle_CheckedChanged(object sender, EventArgs e)
+    {
+      if (magnifyToggle.Checked == false)
+      {
+        lbl_warning.Visible = false;
+      }
+    }
   }
 }

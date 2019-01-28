@@ -79,6 +79,7 @@
       this.panel_all = new System.Windows.Forms.Panel();
       this.magnifyToggle = new System.Windows.Forms.CheckBox();
       this.button1 = new System.Windows.Forms.Button();
+      this.lbl_warning = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.panel6.SuspendLayout();
@@ -421,6 +422,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.panel2.Controls.Add(this.lbl_warning);
       this.panel2.Controls.Add(this.lbl_processing2);
       this.panel2.Controls.Add(this.pictureBox_main);
       this.panel2.Location = new System.Drawing.Point(11, 11);
@@ -638,6 +640,7 @@
       this.magnifyToggle.TabIndex = 1005;
       this.magnifyToggle.Text = "Magnify";
       this.magnifyToggle.UseVisualStyleBackColor = true;
+      this.magnifyToggle.CheckedChanged += new System.EventHandler(this.magnifyToggle_CheckedChanged);
       // 
       // button1
       // 
@@ -653,6 +656,20 @@
       this.button1.TabIndex = 1004;
       this.button1.Text = "<";
       this.button1.UseVisualStyleBackColor = false;
+      // 
+      // lbl_warning
+      // 
+      this.lbl_warning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lbl_warning.AutoSize = true;
+      this.lbl_warning.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbl_warning.ForeColor = System.Drawing.Color.Red;
+      this.lbl_warning.Location = new System.Drawing.Point(3, 490);
+      this.lbl_warning.Name = "lbl_warning";
+      this.lbl_warning.Size = new System.Drawing.Size(694, 15);
+      this.lbl_warning.TabIndex = 1006;
+      this.lbl_warning.Text = "WARNING : THIS WINDOW MUST BE USED ON YOUR LEFT-MOST MONITOR FOR THE MAGNIFICATIO" +
+    "N LOUPE TO SHOW.";
+      this.lbl_warning.Visible = false;
       // 
       // Form1
       // 
@@ -741,6 +758,7 @@
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button lbl_processing2;
     private System.Windows.Forms.CheckBox magnifyToggle;
+    private System.Windows.Forms.Label lbl_warning;
   }
 }
 
