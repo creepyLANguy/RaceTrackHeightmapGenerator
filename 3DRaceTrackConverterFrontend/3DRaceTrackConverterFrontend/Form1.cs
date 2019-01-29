@@ -424,6 +424,45 @@ namespace _3DRaceTrackConverterFrontend
       return (trackPath.Contains(" ") || gradientPath.Contains(" "));
     }
 
+    int GetColor(string x, string y)
+    {
+      int xi = 0;
+      int.TryParse(x, NumberStyles.Integer, null, out xi);
+      int yi = 0;
+      int.TryParse(y, NumberStyles.Integer, null, out yi);
+
+      return (pictureBox_preview.Image as Bitmap).GetPixel(xi, yi).ToArgb();
+    }
+
+    bool MasksAreValid()
+    {
+      if (GetColor(m1x1.Text, m1y1.Text) == GetColor(m1x2.Text, m1y2.Text))
+      {
+        return false;
+      }
+      if (GetColor(m2x1.Text, m2y1.Text) == GetColor(m2x2.Text, m2y2.Text))
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    bool FilesHaveDifferentLengths(int id)
+    {
+      string file1 = "" + id + "//1.txt";
+      string file2 = "" + id + "//2.txt";
+
+      int file1_len = File.ReadAllLines(file1).Length;
+      int file2_len = File.ReadAllLines(file2).Length;
+      if (file1_len == file2_len)
+      {
+        return false;
+      }
+
+      return true;
+    }
+
     private void btn_go_Click(object sender, EventArgs e)
     {
       Lock();
@@ -437,7 +476,14 @@ namespace _3DRaceTrackConverterFrontend
 
       if (PathsContainSpaces() == true)
       {
-        MessageBox.Show("Paths contain spaces, which are not allowed.");
+        MessageBox.Show("File paths contain spaces, which are not allowed.");
+        Unlock();
+        return;
+      }
+
+      if (MasksAreValid() == false)
+      {
+        MessageBox.Show("Masks are not valid.\nThey must each have one point on a black pixel and one on a white pixel.");
         Unlock();
         return;
       }
@@ -456,7 +502,18 @@ namespace _3DRaceTrackConverterFrontend
         return;
       }
 
-      if (checkBox1.Checked)
+      if (FilesHaveDifferentLengths(result1))
+      {
+        Process.Start(""+ result1);
+
+        MessageBox.Show(
+          "Files contain a different number of coordinates.\n"+
+          "Check the directory and sanitise the data.\n"+
+          "Execution will resume after this dialog is dismissed.",
+          "WARNING!"
+          );
+      }
+      else if (checkBox1.Checked)
       {
         //Process.Start(""+ result1);
       }
@@ -641,7 +698,7 @@ namespace _3DRaceTrackConverterFrontend
         magnify_X, magnify_Y
       );
 
-      //This prevents crashing when movingthe window to a new monitor
+      //This prevents crashing when moving the window to a new monitor
       //that (I'm assuming here) isn't the leftmost display. 
       //Simply do not draw the loupe.
       //Perhaps show a little warning... 

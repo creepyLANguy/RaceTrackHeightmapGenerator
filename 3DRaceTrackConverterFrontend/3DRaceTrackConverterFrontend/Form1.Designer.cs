@@ -78,9 +78,9 @@
       this.tb_y = new System.Windows.Forms.TextBox();
       this.lbl_y = new System.Windows.Forms.Label();
       this.panel_all = new System.Windows.Forms.Panel();
+      this.btn_help = new System.Windows.Forms.Button();
       this.magnifyToggle = new System.Windows.Forms.CheckBox();
       this.button1 = new System.Windows.Forms.Button();
-      this.btn_help = new System.Windows.Forms.Button();
       this.lbl_help = new System.Windows.Forms.Button();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -646,6 +646,18 @@
       this.panel_all.Size = new System.Drawing.Size(1027, 686);
       this.panel_all.TabIndex = 1;
       // 
+      // btn_help
+      // 
+      this.btn_help.BackColor = System.Drawing.SystemColors.Control;
+      this.btn_help.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btn_help.Location = new System.Drawing.Point(337, 651);
+      this.btn_help.Name = "btn_help";
+      this.btn_help.Size = new System.Drawing.Size(65, 24);
+      this.btn_help.TabIndex = 1006;
+      this.btn_help.Text = "Help";
+      this.btn_help.UseVisualStyleBackColor = false;
+      this.btn_help.Click += new System.EventHandler(this.btn_help_Click);
+      // 
       // magnifyToggle
       // 
       this.magnifyToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -674,18 +686,6 @@
       this.button1.TabIndex = 1004;
       this.button1.Text = "<";
       this.button1.UseVisualStyleBackColor = false;
-      // 
-      // btn_help
-      // 
-      this.btn_help.BackColor = System.Drawing.SystemColors.Control;
-      this.btn_help.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btn_help.Location = new System.Drawing.Point(337, 651);
-      this.btn_help.Name = "btn_help";
-      this.btn_help.Size = new System.Drawing.Size(65, 24);
-      this.btn_help.TabIndex = 1006;
-      this.btn_help.Text = "Help";
-      this.btn_help.UseVisualStyleBackColor = false;
-      this.btn_help.Click += new System.EventHandler(this.btn_help_Click);
       // 
       // lbl_help
       // 
