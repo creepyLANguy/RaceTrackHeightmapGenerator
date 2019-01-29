@@ -44,6 +44,9 @@ namespace _3DRaceTrackConverterFrontend
     int offset_x = 0;
     int offset_y = 0;
 
+    double file1_len = 0;
+    double file2_len = 0;
+
     public Form1()
     {
       InitializeComponent();
@@ -453,8 +456,8 @@ namespace _3DRaceTrackConverterFrontend
       string file1 = "" + id + "//1.txt";
       string file2 = "" + id + "//2.txt";
 
-      int file1_len = File.ReadAllLines(file1).Length;
-      int file2_len = File.ReadAllLines(file2).Length;
+      file1_len = File.ReadAllLines(file1).Length;
+      file2_len = File.ReadAllLines(file2).Length;
       if (file1_len == file2_len)
       {
         return false;
@@ -504,14 +507,25 @@ namespace _3DRaceTrackConverterFrontend
 
       if (FilesHaveDifferentLengths(result1))
       {
-        Process.Start(""+ result1);
+        if (checkBox2.Checked == true)
+        {
 
-        MessageBox.Show(
-          "Files contain a different number of coordinates.\n"+
-          "Check the directory and sanitise the data.\n"+
-          "Execution will resume after this dialog is dismissed.",
-          "WARNING!"
-          );
+          Process.Start("" + result1);
+
+          double errorMargin = 100 - ((file1_len / file2_len) * 100);
+          double errorRounded = Math.Round(Math.Abs(errorMargin), 4);
+          MessageBox.Show(
+            "Files contain a different number of coordinates.\n" +
+            "Check the directory and sanitise the data.\n" +
+            "Execution will resume after this dialog is dismissed.\n" +
+            "\n" +
+            "1.txt : " + file1_len + "\n" +
+            "2.txt : " + file2_len + "\n" +
+            "Error margin: " + errorRounded + "%\n"
+            ,
+            "WARNING!"
+            );
+        }
       }
       else if (checkBox1.Checked)
       {

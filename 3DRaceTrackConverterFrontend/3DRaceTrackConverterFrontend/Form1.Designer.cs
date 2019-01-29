@@ -61,6 +61,7 @@
       this.lbl_image = new System.Windows.Forms.Label();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.lbl_help = new System.Windows.Forms.Button();
       this.lbl_warning = new System.Windows.Forms.Label();
       this.lbl_processing2 = new System.Windows.Forms.Button();
       this.pictureBox_main = new System.Windows.Forms.PictureBox();
@@ -81,7 +82,7 @@
       this.btn_help = new System.Windows.Forms.Button();
       this.magnifyToggle = new System.Windows.Forms.CheckBox();
       this.button1 = new System.Windows.Forms.Button();
-      this.lbl_help = new System.Windows.Forms.Button();
+      this.checkBox2 = new System.Windows.Forms.CheckBox();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.panel6.SuspendLayout();
@@ -433,6 +434,25 @@
       this.panel2.Size = new System.Drawing.Size(702, 513);
       this.panel2.TabIndex = 1000;
       // 
+      // lbl_help
+      // 
+      this.lbl_help.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbl_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+      this.lbl_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.lbl_help.Font = new System.Drawing.Font("Candara", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbl_help.ForeColor = System.Drawing.Color.Black;
+      this.lbl_help.Location = new System.Drawing.Point(3, 3);
+      this.lbl_help.Name = "lbl_help";
+      this.lbl_help.Size = new System.Drawing.Size(694, 505);
+      this.lbl_help.TabIndex = 1007;
+      this.lbl_help.Text = resources.GetString("lbl_help.Text");
+      this.lbl_help.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.lbl_help.UseVisualStyleBackColor = true;
+      this.lbl_help.Visible = false;
+      this.lbl_help.Click += new System.EventHandler(this.lbl_help_Click);
+      // 
       // lbl_warning
       // 
       this.lbl_warning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -532,7 +552,7 @@
       this.checkBox1.AutoSize = true;
       this.checkBox1.Checked = true;
       this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox1.Location = new System.Drawing.Point(873, 656);
+      this.checkBox1.Location = new System.Drawing.Point(865, 639);
       this.checkBox1.Name = "checkBox1";
       this.checkBox1.Size = new System.Drawing.Size(127, 17);
       this.checkBox1.TabIndex = 11;
@@ -623,6 +643,7 @@
       // 
       // panel_all
       // 
+      this.panel_all.Controls.Add(this.checkBox2);
       this.panel_all.Controls.Add(this.btn_help);
       this.panel_all.Controls.Add(this.magnifyToggle);
       this.panel_all.Controls.Add(this.lbl_x);
@@ -648,6 +669,7 @@
       // 
       // btn_help
       // 
+      this.btn_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.btn_help.BackColor = System.Drawing.SystemColors.Control;
       this.btn_help.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btn_help.Location = new System.Drawing.Point(337, 651);
@@ -687,24 +709,18 @@
       this.button1.Text = "<";
       this.button1.UseVisualStyleBackColor = false;
       // 
-      // lbl_help
+      // checkBox2
       // 
-      this.lbl_help.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbl_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-      this.lbl_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.lbl_help.Font = new System.Drawing.Font("Candara", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lbl_help.ForeColor = System.Drawing.Color.Black;
-      this.lbl_help.Location = new System.Drawing.Point(3, 3);
-      this.lbl_help.Name = "lbl_help";
-      this.lbl_help.Size = new System.Drawing.Size(694, 505);
-      this.lbl_help.TabIndex = 1007;
-      this.lbl_help.Text = resources.GetString("lbl_help.Text");
-      this.lbl_help.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.lbl_help.UseVisualStyleBackColor = true;
-      this.lbl_help.Visible = false;
-      this.lbl_help.Click += new System.EventHandler(this.lbl_help_Click);
+      this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.checkBox2.AutoSize = true;
+      this.checkBox2.Checked = true;
+      this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBox2.Location = new System.Drawing.Point(865, 658);
+      this.checkBox2.Name = "checkBox2";
+      this.checkBox2.Size = new System.Drawing.Size(135, 17);
+      this.checkBox2.TabIndex = 1007;
+      this.checkBox2.Text = "Show runtime warnings";
+      this.checkBox2.UseVisualStyleBackColor = true;
       // 
       // Form1
       // 
@@ -796,6 +812,7 @@
     private System.Windows.Forms.Label lbl_warning;
     private System.Windows.Forms.Button btn_help;
     private System.Windows.Forms.Button lbl_help;
+    private System.Windows.Forms.CheckBox checkBox2;
   }
 }
 
