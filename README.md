@@ -3,6 +3,6 @@ Unauthorized copying of this code or its contents, via any medium, is strictly p
 Proprietary and confidential.
 
 Written by Altamish Mahomed  gambit318@gmail.com, Jan 2019.
-___
 
-TODO: Add ability to set the thresholds and modify the edge files before final step. 
+
+
