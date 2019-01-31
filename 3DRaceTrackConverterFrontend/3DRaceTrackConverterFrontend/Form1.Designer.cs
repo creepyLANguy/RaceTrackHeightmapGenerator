@@ -79,10 +79,10 @@
       this.tb_y = new System.Windows.Forms.TextBox();
       this.lbl_y = new System.Windows.Forms.Label();
       this.panel_all = new System.Windows.Forms.Panel();
+      this.checkBox2 = new System.Windows.Forms.CheckBox();
       this.btn_help = new System.Windows.Forms.Button();
       this.magnifyToggle = new System.Windows.Forms.CheckBox();
       this.button1 = new System.Windows.Forms.Button();
-      this.checkBox2 = new System.Windows.Forms.CheckBox();
       this.panel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.panel6.SuspendLayout();
@@ -441,7 +441,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lbl_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
       this.lbl_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.lbl_help.Font = new System.Drawing.Font("Candara", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbl_help.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbl_help.ForeColor = System.Drawing.Color.Black;
       this.lbl_help.Location = new System.Drawing.Point(3, 3);
       this.lbl_help.Name = "lbl_help";
@@ -667,6 +667,19 @@
       this.panel_all.Size = new System.Drawing.Size(1027, 686);
       this.panel_all.TabIndex = 1;
       // 
+      // checkBox2
+      // 
+      this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.checkBox2.AutoSize = true;
+      this.checkBox2.Checked = true;
+      this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBox2.Location = new System.Drawing.Point(865, 658);
+      this.checkBox2.Name = "checkBox2";
+      this.checkBox2.Size = new System.Drawing.Size(135, 17);
+      this.checkBox2.TabIndex = 1007;
+      this.checkBox2.Text = "Show runtime warnings";
+      this.checkBox2.UseVisualStyleBackColor = true;
+      // 
       // btn_help
       // 
       this.btn_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -708,19 +721,6 @@
       this.button1.TabIndex = 1004;
       this.button1.Text = "<";
       this.button1.UseVisualStyleBackColor = false;
-      // 
-      // checkBox2
-      // 
-      this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.checkBox2.AutoSize = true;
-      this.checkBox2.Checked = true;
-      this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox2.Location = new System.Drawing.Point(865, 658);
-      this.checkBox2.Name = "checkBox2";
-      this.checkBox2.Size = new System.Drawing.Size(135, 17);
-      this.checkBox2.TabIndex = 1007;
-      this.checkBox2.Text = "Show runtime warnings";
-      this.checkBox2.UseVisualStyleBackColor = true;
       // 
       // Form1
       // 
