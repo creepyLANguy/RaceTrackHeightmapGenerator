@@ -514,17 +514,26 @@ namespace _3DRaceTrackConverterFrontend
 
           double errorMargin = 100 - ((file1_len / file2_len) * 100);
           double errorRounded = Math.Round(Math.Abs(errorMargin), 4);
-          MessageBox.Show(
-            "Files contain a different number of coordinates.\n" +
-            "Check the directory and sanitise the data.\n" +
-            "Execution will resume after this dialog is dismissed.\n" +
-            "\n" +
-            "1.txt : " + file1_len + "\n" +
-            "2.txt : " + file2_len + "\n" +
-            "Error margin: " + errorRounded + "%\n"
-            ,
-            "WARNING!"
+          DialogResult res = 
+            MessageBox.Show
+            (
+              "Files contain a different number of coordinates.\n" +
+              "Check the directory and sanitise the data.\n" + 
+              "\n" +
+              "1.txt : " + file1_len + "\n" +
+              "2.txt : " + file2_len + "\n" +
+              "Error margin: " + errorRounded + "%\n" +
+              "\n" +
+              "Continue execution?\n"
+              ,
+              "WARNING!",
+              MessageBoxButtons.OKCancel
             );
+          if (res == DialogResult.Cancel)
+          {
+            Unlock();
+            return;
+          }
         }
       }
       else if (checkBox1.Checked)
