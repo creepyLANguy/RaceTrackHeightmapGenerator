@@ -152,19 +152,7 @@ namespace _3DRaceTrackConverterFrontend
 
       gradientPath = openFileDialog1.FileName;
 
-      if (gradientPath.Contains(".bmp"))
-      {
-        try
-        {
-          pictureBox_gradient.ImageLocation = gradientPath;
-          lbl_gradient.Text = gradientPath;
-        }
-        catch (Exception)
-        {
-          MessageBox.Show("Error opening file.");
-        }
-      }
-      else //.gpx
+      if (gradientPath.Contains(".gpx"))
       {
         string args = "inputFilename" + delim + gradientPath + delim;
         args += "groundThresh" + delim + 10 + delim;
@@ -178,10 +166,20 @@ namespace _3DRaceTrackConverterFrontend
         int resultGPX = process.ExitCode;
         if (resultGPX == 1)
         {
-          pictureBox_gradient.ImageLocation = gradientPath.Substring(0,gradientPath.IndexOf(".gpx")) + ".bmp";
-          lbl_gradient.Text = gradientPath;
+          gradientPath = gradientPath.Substring(0, gradientPath.IndexOf(".gpx")) + ".bmp";
         }
       }
+
+      try
+      {
+        pictureBox_gradient.ImageLocation = gradientPath;
+        lbl_gradient.Text = gradientPath;
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Error opening file.");
+      }
+
     }
 
     void SetReds()
