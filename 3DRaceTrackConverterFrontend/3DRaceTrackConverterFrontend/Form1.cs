@@ -140,7 +140,9 @@ namespace _3DRaceTrackConverterFrontend
 
     private void btn_gradient_Click(object sender, EventArgs e)
     {
-      openFileDialog1.Filter = "Bitmap files (*.bmp)|*.bmp";
+      openFileDialog1.Filter = "Bitmap or GPS Exchange Format|*.bmp;*.gpx";
+      openFileDialog1.Filter += "|Bitmap |*.bmp;";      
+      openFileDialog1.Filter += "|GPS Exchange Format|*.gpx";
 
       DialogResult result = openFileDialog1.ShowDialog();
       if (result != DialogResult.OK)
@@ -149,14 +151,32 @@ namespace _3DRaceTrackConverterFrontend
       }
 
       gradientPath = openFileDialog1.FileName;
-      try
+
+      if (gradientPath.Contains(".bmp"))
       {
-        pictureBox_gradient.ImageLocation = gradientPath;
-        lbl_gradient.Text = gradientPath;
+        try
+        {
+          pictureBox_gradient.ImageLocation = gradientPath;
+          lbl_gradient.Text = gradientPath;
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Error opening file.");
+        }
       }
-      catch (Exception)
+      else //.gpx
       {
-        MessageBox.Show("Error opening file.");
+        Process process = new Process();
+        process.StartInfo.FileName = "TryGPX.exe";
+        process.StartInfo.Arguments = "inputFilename" + delim + gradientPath;
+        process.Start();
+        process.WaitForExit();
+        int resultGPX = process.ExitCode;
+        if (resultGPX == 1)
+        {
+          pictureBox_gradient.ImageLocation = gradientPath.Substring(0,gradientPath.IndexOf(".gpx")) + ".bmp";
+          lbl_gradient.Text = gradientPath;
+        }
       }
     }
 
@@ -166,13 +186,13 @@ namespace _3DRaceTrackConverterFrontend
 
       int.TryParse(m1x1.Text, NumberStyles.Integer, null, out reds[++r]);
       int.TryParse(m1y1.Text, NumberStyles.Integer, null, out reds[++r]);
-                                                                     
+
       int.TryParse(m1x2.Text, NumberStyles.Integer, null, out reds[++r]);
       int.TryParse(m1y2.Text, NumberStyles.Integer, null, out reds[++r]);
-                                                                     
+
       int.TryParse(m2x1.Text, NumberStyles.Integer, null, out reds[++r]);
       int.TryParse(m2y1.Text, NumberStyles.Integer, null, out reds[++r]);
-                                                                     
+
       int.TryParse(m2x2.Text, NumberStyles.Integer, null, out reds[++r]);
       int.TryParse(m2y2.Text, NumberStyles.Integer, null, out reds[++r]);
 
@@ -202,7 +222,7 @@ namespace _3DRaceTrackConverterFrontend
       {
         return;
       }
-      
+
       for (int i = 0; i < reds.Length; ++i)
       {
         try
@@ -279,7 +299,7 @@ namespace _3DRaceTrackConverterFrontend
       config.RemoveRange(0, config.Count);
       foreach (var s in config_muddy)
       {
-        string n = s.Replace("\n","");
+        string n = s.Replace("\n", "");
         config.Add(n);
       }
 
@@ -328,7 +348,7 @@ namespace _3DRaceTrackConverterFrontend
       int.TryParse(m1x1.Text, NumberStyles.Integer, null, out x);
       int y;
       int.TryParse(m1y1.Text, NumberStyles.Integer, null, out y);
-      pictureBox_main.Location = new Point(-1*x + offset_x, -1*y + offset_y);
+      pictureBox_main.Location = new Point(-1 * x + offset_x, -1 * y + offset_y);
     }
 
     private void btn_save_Click(object sender, EventArgs e)
@@ -407,9 +427,9 @@ namespace _3DRaceTrackConverterFrontend
           m2y2.Text.Length == 0
         );
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
-    
+
     void Lock()
     {
       panel_all.Enabled = false;
@@ -514,11 +534,11 @@ namespace _3DRaceTrackConverterFrontend
 
           double errorMargin = 100 - ((file1_len / file2_len) * 100);
           double errorRounded = Math.Round(Math.Abs(errorMargin), 4);
-          DialogResult res = 
+          DialogResult res =
             MessageBox.Show
             (
               "Files contain a different number of coordinates.\n" +
-              "Check the directory and sanitise the data.\n" + 
+              "Check the directory and sanitise the data.\n" +
               "\n" +
               "1.txt : " + file1_len + "\n" +
               "2.txt : " + file2_len + "\n" +
@@ -711,7 +731,7 @@ namespace _3DRaceTrackConverterFrontend
 
       mouse_x = Cursor.Position.X;
       mouse_y = Cursor.Position.Y;
-      
+
       Bitmap bmpBig = CaptureScreen();
 
       Rectangle rect = new Rectangle
@@ -725,7 +745,7 @@ namespace _3DRaceTrackConverterFrontend
       //that (I'm assuming here) isn't the leftmost display. 
       //Simply do not draw the loupe.
       //Perhaps show a little warning... 
-      if  ((mouse_x >= bmpBig.Width) || (mouse_y >= bmpBig.Height))
+      if ((mouse_x >= bmpBig.Width) || (mouse_y >= bmpBig.Height))
       {
         lbl_warning.Visible = true;
         return;
@@ -733,7 +753,7 @@ namespace _3DRaceTrackConverterFrontend
 
       lbl_warning.Visible = false;
 
-      bmp = bmpBig.Clone(rect,PixelFormat.Format32bppRgb);
+      bmp = bmpBig.Clone(rect, PixelFormat.Format32bppRgb);
 
       bmp.SetPixel(bmp.Width / 2, bmp.Height / 2, Color.Green);
 
