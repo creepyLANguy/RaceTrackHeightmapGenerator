@@ -166,9 +166,13 @@ namespace _3DRaceTrackConverterFrontend
       }
       else //.gpx
       {
+        string args = "inputFilename" + delim + gradientPath + delim;
+        args += "groundThresh" + delim + 10 + delim;
+        args += "skyThresh" + delim + 1 + delim;
+
         Process process = new Process();
         process.StartInfo.FileName = "TryGPX.exe";
-        process.StartInfo.Arguments = "inputFilename" + delim + gradientPath;
+        process.StartInfo.Arguments = args;
         process.Start();
         process.WaitForExit();
         int resultGPX = process.ExitCode;
